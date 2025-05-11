@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>French Verbs Practice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .practice-container {
+            display: none;
+        }
+        .question-container {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .sentence {
+            font-size: 20px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 18px;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+            margin: 15px auto;
+            display: block;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+        }
+        .button-group {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 16px;
+        }
+        .correct {
+            background-color: #e6f7e6;
+            color: green;
+        }
+        .incorrect {
+            background-color: #ffebeb;
+            color: red;
+        }
+        .correct-answer {
+            font-weight: bold;
+            color: #0066cc;
+            margin: 10px 0;
+            text-align: center;
+        }
+        #continue-btn, #retry-btn, #new-set-btn {
+            display: none;
+            margin: 20px auto;
+            font-size: 18px;
+            padding: 12px 25px;
+        }
+        #continue-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        #retry-btn {
+            background-color: #FF9800;
+            color: white;
+        }
+        #new-set-btn {
+            background-color: #4285f4;
+            color: white;
+        }
+        .start-btn {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #4285f4;
+            color: white;
+            margin: 20px auto;
+            display: block;
+        }
+        .progress {
+            text-align: center;
+            margin-bottom: 15px;
+            color: #666;
+        }
+        .set-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .results {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 18px;
+        }
+        .mistakes-list {
+            margin: 20px 0;
+            padding: 0;
+            list-style-type: none;
+        }
+        .mistakes-list li {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+        .hint-icon {
+            margin-left: 10px;
+            cursor: pointer;
+            color: #4285f4;
+            font-size: 18px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hint-text {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            display: none;
+        }
+        .mistake-item {
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #fff3f3;
+            border-radius: 5px;
+        }
+        .mistake-answer {
+            color: red;
+        }
+        .correct-answer {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Menu -->
+    <div id="main-menu">
+        <div class="header">
+            <div class="logo">French Verbs Practice</div>
+            <p>Practice common French verbs in infinitive form</p>
+        </div>
+        
+        <div class="set-buttons">
+            <button class="start-btn" onclick="startPractice(1)">Set 1 (10 verbs)</button>
+            <button class="start-btn" onclick="startPractice(2)">Set 2 (10 verbs)</button>
+            <button class="start-btn" onclick="startPractice(3)">Set 3 (10 verbs)</button>
+            <button class="start-btn" onclick="startPractice(4)">Set 4 (10 verbs)</button>
+            <button class="start-btn" onclick="startPractice(5)">Set 5 (10 verbs)</button>
+            <button class="start-btn" onclick="startPractice(6)">Set 6 (10 verbs)</button>
+            <button class="start-btn" onclick="startPractice(7)">Set 7 (10 verbs)</button>
+            <button class="start-btn" onclick="startPractice(8)">Set 8 (10 verbs)</button>
+            <button class="start-btn" onclick="startPractice(9)">Set 9 (10 verbs)</button>
+            <button class="start-btn" onclick="startPractice(10)">Set 10 (10 verbs)</button>
+            <button class="start-btn" onclick="startPractice(11)">Set 11 (10 verbs)</button>
+            <button class="start-btn" onclick="startPractice(12)">Set 12 (10 verbs)</button>
+            <button class="start-btn" onclick="startPractice(13)">Set 13 (10 verbs)</button>
+            <button class="start-btn" onclick="startPractice(14)">Set 14 (10 verbs)</button>
+            <button class="start-btn" onclick="startPractice(15)">Set 15 (10 verbs)</button>
+            <button class="start-btn" onclick="startPractice(16)">Set 16 (10 verbs)</button>
+            <button class="start-btn" onclick="startPractice(17)">Set 17 (10 verbs)</button>
+            <button class="start-btn" onclick="startPractice(18)">Set 18 (10 verbs)</button>
+            <button class="start-btn" onclick="startPractice(19)">Set 19 (10 verbs)</button>
+            <button class="start-btn" onclick="startPractice(20)">Set 20 (10 verbs)</button>
+        </div>
+    </div>
+    
+    <!-- Practice Page -->
+    <div id="practice-page" class="practice-container">
+        <div>
+            <a href="#" onclick="returnToMenu()">← Back to Menu</a>
+            <h2 style="text-align: center;">French Verbs Practice</h2>
+            <div class="progress" id="progress">Verb 1 of 10</div>
+        </div>
+        
+        <div class="question-container">
+            <div class="sentence" id="question-text"></div>
+            <div class="hint-text" id="hint-text"></div>
+            <input type="text" id="user-answer" placeholder="Type the French verb..." autocomplete="off">
+            <div class="button-group">
+                <button onclick="checkAnswer()">Check Answer</button>
+                <button onclick="showAnswer()">Show Answer</button>
+            </div>
+            <div id="feedback" class="feedback"></div>
+            <div id="correct-answer" class="correct-answer"></div>
+            <button id="continue-btn" onclick="nextQuestion()">Continue</button>
+        </div>
+    </div>
+
+    <!-- Results Page -->
+    <div id="results-page" class="practice-container">
+        <div>
+            <a href="#" onclick="returnToMenu()">← Back to Menu</a>
+            <h2 style="text-align: center;">Practice Results</h2>
+        </div>
+        
+        <div class="results" id="results-summary"></div>
+        
+        <div id="mistakes-container">
+            <h3 style="text-align: center;">Your Mistakes</h3>
+            <div id="mistakes-list"></div>
+        </div>
+        
+        <button id="retry-btn" onclick="retryMistakes()">Retry Mistakes</button>
+        <button id="new-set-btn" onclick="returnToMenu()">Practice New Set</button>
+    </div>
+
+    <!-- Audio elements for sound effects -->
+    <audio id="correctSound" src="https://assets.mixkit.co/sfx/preview/mixkit-correct-answer-tone-2870.mp3" preload="auto"></audio>
+    <audio id="wrongSound" src="https://assets.mixkit.co/sfx/preview/mixkit-wrong-answer-fail-notification-946.mp3" preload="auto"></audio>
+
+    <script>
+        // Twenty sets of 10 French verbs each with English translations
+        const verbSets = {
+            1: [
+                { english: "to be", french: "être" },
+                { english: "to have", french: "avoir" },
+                { english: "to go", french: "aller" },
+                { english: "to do/make", french: "faire" },
+                { english: "to say/tell", french: "dire" },
+                { english: "to be able to", french: "pouvoir" },
+                { english: "to want", french: "vouloir" },
+                { english: "to see", french: "voir" },
+                { english: "to know (facts)", french: "savoir" },
+                { english: "to come", french: "venir" }
+            ],
+            2: [
+                { english: "to have to", french: "devoir" },
+                { english: "to take", french: "prendre" },
+                { english: "to put", french: "mettre" },
+                { english: "to give", french: "donner" },
+                { english: "to speak", french: "parler" },
+                { english: "to like/love", french: "aimer" },
+                { english: "to pass/spend time", french: "passer" },
+                { english: "to find", french: "trouver" },
+                { english: "to leave (something)", french: "laisser" },
+                { english: "to arrive", french: "arriver" }
+            ],
+            3: [
+                { english: "to believe", french: "croire" },
+                { english: "to ask", french: "demander" },
+                { english: "to understand", french: "comprendre" },
+                { english: "to give back", french: "rendre" },
+                { english: "to hold", french: "tenir" },
+                { english: "to hear", french: "entendre" },
+                { english: "to answer", french: "répondre" },
+                { english: "to wait", french: "attendre" },
+                { english: "to go out", french: "sortir" },
+                { english: "to live", french: "vivre" }
+            ],
+            4: [
+                { english: "to watch", french: "regarder" },
+                { english: "to look for", french: "chercher" },
+                { english: "to play", french: "jouer" },
+                { english: "to work", french: "travailler" },
+                { english: "to use", french: "utiliser" },
+                { english: "to try", french: "essayer" },
+                { english: "to walk", french: "marcher" },
+                { english: "to know (people)", french: "connaître" },
+                { english: "to eat", french: "manger" },
+                { english: "to drink", french: "boire" }
+            ],
+            5: [
+                { english: "to buy", french: "acheter" },
+                { english: "to open", french: "ouvrir" },
+                { english: "to close", french: "fermer" },
+                { english: "to read", french: "lire" },
+                { english: "to write", french: "écrire" },
+                { english: "to send", french: "envoyer" },
+                { english: "to receive", french: "recevoir" },
+                { english: "to fall", french: "tomber" },
+                { english: "to stay", french: "rester" },
+                { english: "to go up", french: "monter" }
+            ],
+            6: [
+                { english: "to go down", french: "descendre" },
+                { english: "to carry/wear", french: "porter" },
+                { english: "to be born", french: "naître" },
+                { english: "to die", french: "mourir" },
+                { english: "to change", french: "changer" },
+                { english: "to lose", french: "perdre" },
+                { english: "to count", french: "compter" },
+                { english: "to listen", french: "écouter" },
+                { english: "to cook", french: "cuisiner" },
+                { english: "to clean", french: "nettoyer" }
+            ],
+            7: [
+                { english: "to return", french: "rentrer" },
+                { english: "to leave", french: "partir" },
+                { english: "to get up", french: "se lever" },
+                { english: "to go to bed", french: "se coucher" },
+                { english: "to wash", french: "se laver" },
+                { english: "to remember", french: "se souvenir" },
+                { english: "to hurry", french: "se dépêcher" },
+                { english: "to take a walk", french: "se promener" },
+                { english: "to feel", french: "se sentir" },
+                { english: "to sit down", french: "s'asseoir" }
+            ],
+            8: [
+                { english: "to get dressed", french: "s'habiller" },
+                { english: "to have fun", french: "s'amuser" },
+                { english: "to start", french: "commencer" },
+                { english: "to finish", french: "finir" },
+                { english: "to continue", french: "continuer" },
+                { english: "to learn", french: "apprendre" },
+                { english: "to teach", french: "enseigner" },
+                { english: "to think", french: "réfléchir" },
+                { english: "to choose", french: "choisir" },
+                { english: "to fill", french: "remplir" }
+            ],
+            9: [
+                { english: "to grow up", french: "grandir" },
+                { english: "to gain weight", french: "grossir" },
+                { english: "to lose weight", french: "maigrir" },
+                { english: "to obey", french: "obéir" },
+                { english: "to punish", french: "punir" },
+                { english: "to succeed", french: "réussir" },
+                { english: "to tie", french: "attacher" },
+                { english: "to hate", french: "détester" },
+                { english: "to adore", french: "adorer" },
+                { english: "to prefer", french: "préférer" }
+            ],
+            10: [
+                { english: "to hope", french: "espérer" },
+                { english: "to fear", french: "craindre" },
+                { english: "to protect", french: "protéger" },
+                { english: "to appear", french: "apparaître" },
+                { english: "to disappear", french: "disparaître" },
+                { english: "to lie", french: "mentir" },
+                { english: "to steal/fly", french: "voler" },
+                { english: "to sleep", french: "dormir" },
+                { english: "to wake up", french: "se réveiller" },
+                { english: "to lower", french: "baisser" }
+            ],
+            11: [
+                { english: "to increase", french: "augmenter" },
+                { english: "to suffer", french: "souffrir" },
+                { english: "to hide", french: "cacher" },
+                { english: "to show", french: "montrer" },
+                { english: "to pay", french: "payer" },
+                { english: "to place", french: "placer" },
+                { english: "to take (someone)", french: "emmener" },
+                { english: "to bring (someone)", french: "amener" },
+                { english: "to take (something)", french: "emporter" },
+                { english: "to bring back", french: "ramener" }
+            ],
+            12: [
+                { english: "to explain", french: "expliquer" },
+                { english: "to grant", french: "accorder" },
+                { english: "to repair", french: "réparer" },
+                { english: "to break", french: "briser" },
+                { english: "to catch", french: "attraper" },
+                { english: "to dream", french: "rêver" },
+                { english: "to jump", french: "sauter" },
+                { english: "to slip", french: "glisser" },
+                { english: "to cry", french: "pleurer" },
+                { english: "to laugh", french: "rire" }
+            ],
+            13: [
+                { english: "to smile", french: "sourire" },
+                { english: "to leave (a place)", french: "quitter" },
+                { english: "to exist", french: "exister" },
+                { english: "to miss/lack", french: "manquer" },
+                { english: "to touch", french: "toucher" },
+                { english: "to beat", french: "battre" },
+                { english: "to cover", french: "couvrir" },
+                { english: "to discover", french: "découvrir" },
+                { english: "to obtain", french: "obtenir" },
+                { english: "to add", french: "ajouter" }
+            ],
+            14: [
+                { english: "to delete", french: "supprimer" },
+                { english: "to call", french: "téléphoner" },
+                { english: "to discuss", french: "discuter" },
+                { english: "to invite", french: "inviter" },
+                { english: "to organize", french: "organiser" },
+                { english: "to accept", french: "accepter" },
+                { english: "to refuse", french: "refuser" },
+                { english: "to keep", french: "garder" },
+                { english: "to help", french: "aider" },
+                { english: "to avoid", french: "éviter" }
+            ],
+            15: [
+                { english: "to drive", french: "conduire" },
+                { english: "to notice", french: "remarquer" },
+                { english: "to attempt", french: "tenter" },
+                { english: "to hit", french: "frapper" },
+                { english: "to tolerate", french: "supporter" },
+                { english: "to print", french: "imprimer" },
+                { english: "to display", french: "afficher" },
+                { english: "to plan", french: "planifier" },
+                { english: "to deliver", french: "livrer" },
+                { english: "to prepare", french: "préparer" }
+            ],
+            16: [
+                { english: "to cancel", french: "annuler" },
+                { english: "to validate", french: "valider" },
+                { english: "to check", french: "vérifier" },
+                { english: "to feel (emotion)", french: "ressentir" },
+                { english: "to describe", french: "décrire" },
+                { english: "to correct", french: "corriger" },
+                { english: "to review", french: "réviser" },
+                { english: "to repeat", french: "répéter" },
+                { english: "to translate", french: "traduire" },
+                { english: "to interrupt", french: "interrompre" }
+            ],
+            17: [
+                { english: "to enjoy", french: "jouir" },
+                { english: "to act", french: "agir" },
+                { english: "to link", french: "lier" },
+                { english: "to win", french: "gagner" },
+                { english: "to allow", french: "permettre" },
+                { english: "to forbid", french: "interdire" },
+                { english: "to fight", french: "se battre" },
+                { english: "to doubt", french: "douter" },
+                { english: "to guess", french: "deviner" },
+                { english: "to wipe", french: "essuyer" }
+            ],
+            18: [
+                { english: "to climb", french: "grimper" },
+                { english: "to swim", french: "nager" },
+                { english: "to throw", french: "lancer" },
+                { english: "to applaud", french: "applaudir" },
+                { english: "to thank", french: "remercier" },
+                { english: "to build", french: "construire" },
+                { english: "to destroy", french: "détruire" },
+                { english: "to replace", french: "remplacer" },
+                { english: "to separate", french: "séparer" },
+                { english: "to wish", french: "souhaiter" }
+            ],
+            19: [
+                { english: "to sign", french: "signer" },
+                { english: "to save", french: "sauver" },
+                { english: "to reserve", french: "réserver" },
+                { english: "to please", french: "plaire" },
+                { english: "to hold", french: "tenir" },
+                { english: "to melt", french: "fondre" },
+                { english: "to sweep", french: "balayer" },
+                { english: "to pray", french: "prier" },
+                { english: "to scream", french: "hurler" },
+                { english: "to welcome", french: "accueillir" }
+            ],
+            20: [
+                { english: "to shake", french: "trembler" },
+                { english: "to sing", french: "chanter" },
+                { english: "to dance", french: "danser" },
+                { english: "to paint", french: "peindre" },
+                { english: "to draw", french: "dessiner" },
+                { english: "to photograph", french: "photographier" },
+                { english: "to travel", french: "voyager" },
+                { english: "to visit", french: "visiter" },
+                { english: "to study", french: "étudier" },
+                { english: "to work (hard)", french: "travailler dur" }
+            ]
+        };
+
+        // Game state
+        let currentSet = 1;
+        let currentQuestionIndex = 0;
+        let shuffledVerbs = [];
+        let mistakes = [];
+        let currentScore = 0;
+
+        // DOM elements
+        const mainMenu = document.getElementById('main-menu');
+        const practicePage = document.getElementById('practice-page');
+        const resultsPage = document.getElementById('results-page');
+        const questionText = document.getElementById('question-text');
+        const userAnswer = document.getElementById('user-answer');
+        const feedback = document.getElementById('feedback');
+        const correctAnswerDisplay = document.getElementById('correct-answer');
+        const continueBtn = document.getElementById('continue-btn');
+        const retryBtn = document.getElementById('retry-btn');
+        const newSetBtn = document.getElementById('new-set-btn');
+        const progressDisplay = document.getElementById('progress');
+        const resultsSummary = document.getElementById('results-summary');
+        const mistakesList = document.getElementById('mistakes-list');
+        const hintText = document.getElementById('hint-text');
+        
+        // Audio elements
+        const correctSound = document.getElementById('correctSound');
+        const wrongSound = document.getElementById('wrongSound');
+
+        // Start practice with selected set
+        function startPractice(setNumber) {
+            currentSet = setNumber;
+            currentQuestionIndex = 0;
+            currentScore = 0;
+            mistakes = [];
+            
+            // Shuffle the verbs for random order
+            shuffledVerbs = [...verbSets[setNumber]].sort(() => Math.random() - 0.5);
+            
+            mainMenu.style.display = 'none';
+            resultsPage.style.display = 'none';
+            practicePage.style.display = 'block';
+            showQuestion();
+        }
+
+        // Show current question
+        function showQuestion() {
+            const verb = shuffledVerbs[currentQuestionIndex];
+            
+            // Create question text with hint icon
+            questionText.innerHTML = `
+                ${verb.english}
+                <div class="hint-icon" onclick="showHint()">i</div>
+            `;
+            
+            userAnswer.value = '';
+            userAnswer.focus();
+            
+            // Clear feedback and hint
+            feedback.textContent = '';
+            feedback.className = 'feedback';
+            correctAnswerDisplay.textContent = '';
+            hintText.textContent = '';
+            hintText.style.display = 'none';
+            continueBtn.style.display = 'none';
+            
+            // Update progress
+            progressDisplay.textContent = `Verb ${currentQuestionIndex + 1} of ${shuffledVerbs.length}`;
+        }
+
+        // Show hint for current verb
+        function showHint() {
+            const verb = shuffledVerbs[currentQuestionIndex];
+            let hint = '';
+            
+            // Create hint based on verb characteristics
+            if (verb.french.endsWith('er')) {
+                hint = `Ends with "er"`;
+            } else if (verb.french.endsWith('ir')) {
+                hint = `Ends with "ir"`;
+            } else if (verb.french.endsWith('re')) {
+                hint = `Ends with "re"`;
+            } else if (verb.french.endsWith('oir')) {
+                hint = `Ends with "oir"`;
+            }
+            
+            // Add first letter if the word is long
+            if (verb.french.length > 5) {
+                hint = `Starts with "${verb.french[0].toUpperCase()}" and ${hint.toLowerCase()}`;
+            }
+            
+            hintText.textContent = `Hint: ${hint}`;
+            hintText.style.display = 'block';
+        }
+
+        // Check answer
+        function checkAnswer() {
+            const verb = shuffledVerbs[currentQuestionIndex];
+            const answer = userAnswer.value.trim().toLowerCase();
+            
+            if (answer === verb.french) {
+                feedback.textContent = "Correct!";
+                feedback.className = "feedback correct";
+                currentScore++;
+                // Play correct sound
+                correctSound.currentTime = 0;
+                correctSound.play();
+                setTimeout(nextQuestion, 1500);
+            } else {
+                feedback.textContent = "Incorrect";
+                feedback.className = "feedback incorrect";
+                correctAnswerDisplay.textContent = "Correct answer: " + verb.french;
+                continueBtn.style.display = 'block';
+                
+                // Play wrong sound
+                wrongSound.currentTime = 0;
+                wrongSound.play();
+                
+                // Record mistake
+                mistakes.push({
+                    english: verb.english,
+                    french: verb.french,
+                    userAnswer: answer
+                });
+            }
+        }
+
+        // Show answer
+        function showAnswer() {
+            const verb = shuffledVerbs[currentQuestionIndex];
+            
+            userAnswer.value = verb.french;
+            feedback.textContent = "Here's the answer:";
+            feedback.className = "feedback correct";
+            correctAnswerDisplay.textContent = verb.french;
+            continueBtn.style.display = 'block';
+            
+            // Play wrong sound since they needed to see the answer
+            wrongSound.currentTime = 0;
+            wrongSound.play();
+            
+            // Record as mistake if not already
+            if (!mistakes.some(m => m.english === verb.english)) {
+                mistakes.push({
+                    english: verb.english,
+                    french: verb.french,
+                    userAnswer: ""
+                });
+            }
+        }
+
+        // Next question
+        function nextQuestion() {
+            currentQuestionIndex++;
+            
+            if (currentQuestionIndex >= shuffledVerbs.length) {
+                showResults();
+            } else {
+                showQuestion();
+            }
+        }
+
+        // Show results after completing set
+        function showResults() {
+            practicePage.style.display = 'none';
+            resultsPage.style.display = 'block';
+            
+            // Calculate score percentage
+            const scorePercentage = Math.round((currentScore / shuffledVerbs.length) * 100);
+            
+            // Display summary
+            resultsSummary.innerHTML = `
+                <p>You completed <strong>Set ${currentSet}</strong> with <strong>${currentScore}/${shuffledVerbs.length}</strong> correct answers (${scorePercentage}%)</p>
+            `;
+            
+            // Display mistakes if any
+            if (mistakes.length > 0) {
+                mistakesList.innerHTML = mistakes.map(mistake => `
+                    <div class="mistake-item">
+                        <strong>${mistake.english}</strong><br>
+                        <span class="mistake-answer">Your answer: ${mistake.userAnswer || "(skipped)"}</span><br>
+                        <span class="correct-answer">Correct answer: ${mistake.french}</span>
+                    </div>
+                `).join('');
+                retryBtn.style.display = 'block';
+            } else {
+                mistakesContainer.innerHTML = `
+                    <h3 style="text-align: center; color: green;">Perfect! No mistakes!</h3>
+                `;
+                retryBtn.style.display = 'none';
+            }
+            
+            newSetBtn.style.display = 'block';
+        }
+
+        // Retry mistakes
+        function retryMistakes() {
+            if (mistakes.length === 0) return;
+            
+            // Create a new set with just the mistakes
+            shuffledVerbs = mistakes.map(mistake => ({
+                english: mistake.english,
+                french: mistake.french
+            }));
+            
+            currentQuestionIndex = 0;
+            currentScore = 0;
+            mistakes = [];
+            
+            resultsPage.style.display = 'none';
+            practicePage.style.display = 'block';
+            showQuestion();
+        }
+
+        // Return to menu
+        function returnToMenu() {
+            mainMenu.style.display = 'block';
+            practicePage.style.display = 'none';
+            resultsPage.style.display = 'none';
+        }
+
+        // Allow pressing Enter to check answer
+        userAnswer.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                if (continueBtn.style.display === 'block') {
+                    nextQuestion();
+                } else {
+                    checkAnswer();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
