@@ -3,250 +3,652 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>French Verbs Practice</title> <head>
-    <script defer src="/_vercel/insights/script.js"></script>
+    <title>French Verbs Mastery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #4361ee;
+            --primary-light: #4895ef;
+            --secondary: #3f37c9;
+            --success: #4cc9f0;
+            --danger: #f72585;
+            --warning: #f8961e;
+            --info: #4895ef;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --white: #ffffff;
+            --gray: #6c757d;
+            --gray-light: #e9ecef;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f7fa;
+            color: var(--dark);
             line-height: 1.6;
         }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
         .header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            padding: 20px 0;
         }
+
         .logo {
-            font-size: 24px;
-            font-weight: bold;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .practice-container {
-            display: none;
-        }
-        .question-container {
+
+        .tagline {
+            color: var(--gray);
+            font-size: 1.1rem;
             margin-bottom: 20px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
         }
-        .sentence {
-            font-size: 20px;
-            margin: 20px 0;
-            text-align: center;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+
+        /* Card Styles */
+        .card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 25px;
+            margin-bottom: 25px;
+            transition: var(--transition);
         }
-        input[type="text"] {
-            padding: 10px;
-            font-size: 18px;
-            width: 80%;
-            max-width: 500px;
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
             text-align: center;
-            margin: 15px auto;
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: center;
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background-color: var(--success);
+            color: var(--white);
+        }
+
+        .btn-success:hover {
+            background-color: #3aa8d8;
+            transform: translateY(-2px);
+        }
+
+        .btn-warning {
+            background-color: var(--warning);
+            color: var(--white);
+        }
+
+        .btn-warning:hover {
+            background-color: #e07e0c;
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background-color: var(--danger);
+            color: var(--white);
+        }
+
+        .btn-danger:hover {
+            background-color: #e51778;
+            transform: translateY(-2px);
+        }
+
+        .btn-info {
+            background-color: var(--info);
+            color: var(--white);
+        }
+
+        .btn-info:hover {
+            background-color: #3a7bbd;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+
+        .btn-lg {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+        }
+
+        .btn-block {
             display: block;
-            border: 2px solid #ddd;
-            border-radius: 5px;
+            width: 100%;
         }
-        .button-group {
-            margin-top: 15px;
+
+        .btn-group {
             display: flex;
             gap: 10px;
+            margin-top: 20px;
             justify-content: center;
         }
-        button {
-            padding: 10px 20px;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
+
+        /* Form Elements */
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 1rem;
+            border: 2px solid var(--gray-light);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            margin-bottom: 15px;
         }
-        .feedback {
-            margin-top: 15px;
-            padding: 15px;
-            border-radius: 5px;
-            text-align: center;
-            font-size: 16px;
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
         }
-        .correct {
-            background-color: #e6f7e6;
-            color: green;
-        }
-        .incorrect {
-            background-color: #ffebeb;
-            color: red;
-        }
-        .correct-answer {
-            font-weight: bold;
-            color: #0066cc;
-            margin: 10px 0;
-            text-align: center;
-        }
-        #continue-btn, #retry-btn, #new-set-btn {
-            display: none;
-            margin: 20px auto;
-            font-size: 18px;
-            padding: 12px 25px;
-        }
-        #continue-btn {
-            background-color: #4CAF50;
-            color: white;
-        }
-        #retry-btn {
-            background-color: #FF9800;
-            color: white;
-        }
-        #new-set-btn {
-            background-color: #4285f4;
-            color: white;
-        }
-        .start-btn {
-            padding: 15px 30px;
-            font-size: 18px;
-            background-color: #4285f4;
-            color: white;
-            margin: 20px auto;
+
+        .form-label {
             display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
         }
+
+        /* Feedback Messages */
+        .feedback {
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin: 15px 0;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .feedback.correct {
+            background-color: rgba(76, 201, 240, 0.2);
+            color: #1e88e5;
+            border-left: 4px solid var(--success);
+        }
+
+        .feedback.incorrect {
+            background-color: rgba(247, 37, 133, 0.1);
+            color: var(--danger);
+            border-left: 4px solid var(--danger);
+        }
+
+        /* Progress Indicator */
         .progress {
             text-align: center;
-            margin-bottom: 15px;
-            color: #666;
+            margin: 20px 0;
+            color: var(--gray);
+            font-weight: 500;
         }
-        .set-buttons {
+
+        .progress-bar {
+            height: 6px;
+            background-color: var(--gray-light);
+            border-radius: 3px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            transition: width 0.3s ease;
+        }
+
+        /* Set Buttons Grid */
+        .sets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .set-btn {
+            background-color: var(--white);
+            border: 2px solid var(--gray-light);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .set-btn:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: var(--box-shadow);
+        }
+
+        .set-btn.active {
+            background-color: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        /* Hint Styles */
+        .hint-container {
+            margin-top: 15px;
+        }
+
+        .hint-btn {
+            background-color: transparent;
+            border: none;
+            color: var(--info);
+            font-weight: 600;
+            cursor: pointer;
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            margin-top: 20px;
+            align-items: center;
+            gap: 5px;
+            margin: 0 auto;
         }
-        .results {
+
+        .hint-btn:hover {
+            text-decoration: underline;
+        }
+
+        .hint-text {
+            background-color: rgba(72, 149, 239, 0.1);
+            padding: 12px;
+            border-radius: var(--border-radius);
+            margin-top: 10px;
+            display: none;
+            border-left: 3px solid var(--info);
+        }
+
+        /* Results Styles */
+        .results-score {
+            font-size: 2rem;
+            font-weight: 700;
             text-align: center;
             margin: 20px 0;
-            font-size: 18px;
+            color: var(--primary);
         }
+
+        .perfect-score {
+            color: var(--success);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
         .mistakes-list {
-            margin: 20px 0;
-            padding: 0;
-            list-style-type: none;
+            margin-top: 25px;
         }
-        .mistakes-list li {
-            margin: 10px 0;
-            padding: 10px;
-            background-color: #f5f5f5;
-            border-radius: 5px;
-        }
-        .hint-icon {
-            margin-left: 10px;
-            cursor: pointer;
-            color: #4285f4;
-            font-size: 18px;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: #f0f0f0;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .hint-text {
-            margin-top: 10px;
-            padding: 10px;
-            background-color: #f9f9f9;
-            border-radius: 5px;
-            display: none;
-        }
+
         .mistake-item {
-            margin-bottom: 15px;
-            padding: 10px;
-            background-color: #fff3f3;
-            border-radius: 5px;
+            background-color: var(--light);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-bottom: 10px;
+            border-left: 4px solid var(--danger);
         }
-        .mistake-answer {
-            color: red;
-        }
+
         .correct-answer {
-            color: green;
+            color: var(--success);
+            font-weight: 500;
+        }
+
+        .user-answer {
+            color: var(--danger);
+            font-weight: 500;
+        }
+
+        /* Test Styles */
+        .test-instructions {
+            background-color: rgba(248, 150, 30, 0.1);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin: 20px 0;
+            border-left: 4px solid var(--warning);
+        }
+
+        .test-instructions strong {
+            color: var(--warning);
+        }
+
+        /* Celebration Animation */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: var(--primary);
+            top: -10px;
+            z-index: 9999;
+            animation: confetti-fall 5s linear forwards;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Question Text Styles */
+        .question-text {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin: 30px 0;
+            color: #2b2d42;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Input Field Styles */
+        .verb-input {
+            font-size: 1.5rem;
+            text-align: center;
+            padding: 15px;
+            margin: 20px auto;
+            max-width: 500px;
+            border: 2px solid var(--primary-light);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .verb-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .sets-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+
+            .question-text {
+                font-size: 2rem;
+                padding: 15px;
+            }
+
+            .verb-input {
+                font-size: 1.2rem;
+                padding: 12px;
+            }
+        }
+
+        /* Utility Classes */
+        .text-center {
+            text-align: center;
+        }
+        
+        .mt-2 { margin-top: 0.5rem; }
+        .mt-3 { margin-top: 1rem; }
+        .mt-4 { margin-top: 1.5rem; }
+        .mt-5 { margin-top: 2rem; }
+        
+        .mb-2 { margin-bottom: 0.5rem; }
+        .mb-3 { margin-bottom: 1rem; }
+        .mb-4 { margin-bottom: 1.5rem; }
+        .mb-5 { margin-bottom: 2rem; }
+        
+        .hidden {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <!-- Main Menu -->
-    <div id="main-menu">
-        <div class="header">
-            <div class="logo">French Verbs Practice</div>
-            <p>Practice common French verbs in infinitive form</p>
-        </div>
-        
-        <div class="set-buttons">
-            <button class="start-btn" onclick="startPractice(1)">Set 1 (10 verbs)</button>
-            <button class="start-btn" onclick="startPractice(2)">Set 2 (10 verbs)</button>
-            <button class="start-btn" onclick="startPractice(3)">Set 3 (10 verbs)</button>
-            <button class="start-btn" onclick="startPractice(4)">Set 4 (10 verbs)</button>
-            <button class="start-btn" onclick="startPractice(5)">Set 5 (10 verbs)</button>
-            <button class="start-btn" onclick="startPractice(6)">Set 6 (10 verbs)</button>
-            <button class="start-btn" onclick="startPractice(7)">Set 7 (10 verbs)</button>
-            <button class="start-btn" onclick="startPractice(8)">Set 8 (10 verbs)</button>
-            <button class="start-btn" onclick="startPractice(9)">Set 9 (10 verbs)</button>
-            <button class="start-btn" onclick="startPractice(10)">Set 10 (10 verbs)</button>
-            <button class="start-btn" onclick="startPractice(11)">Set 11 (10 verbs)</button>
-            <button class="start-btn" onclick="startPractice(12)">Set 12 (10 verbs)</button>
-            <button class="start-btn" onclick="startPractice(13)">Set 13 (10 verbs)</button>
-            <button class="start-btn" onclick="startPractice(14)">Set 14 (10 verbs)</button>
-            <button class="start-btn" onclick="startPractice(15)">Set 15 (10 verbs)</button>
-            <button class="start-btn" onclick="startPractice(16)">Set 16 (10 verbs)</button>
-            <button class="start-btn" onclick="startPractice(17)">Set 17 (10 verbs)</button>
-            <button class="start-btn" onclick="startPractice(18)">Set 18 (10 verbs)</button>
-            <button class="start-btn" onclick="startPractice(19)">Set 19 (10 verbs)</button>
-            <button class="start-btn" onclick="startPractice(20)">Set 20 (10 verbs)</button>
-        </div>
-    </div>
-    
-    <!-- Practice Page -->
-    <div id="practice-page" class="practice-container">
-        <div>
-            <a href="#" onclick="returnToMenu()">← Back to Menu</a>
-            <h2 style="text-align: center;">French Verbs Practice</h2>
-            <div class="progress" id="progress">Verb 1 of 10</div>
-        </div>
-        
-        <div class="question-container">
-            <div class="sentence" id="question-text"></div>
-            <div class="hint-text" id="hint-text"></div>
-            <input type="text" id="user-answer" placeholder="Type the French verb..." autocomplete="off">
-            <div class="button-group">
-                <button onclick="checkAnswer()">Check Answer</button>
-                <button onclick="showAnswer()">Show Answer</button>
+    <div class="container">
+        <!-- Main Menu -->
+        <div id="main-menu">
+            <div class="header">
+                <div class="logo">French Verbs Mastery</div>
+                <p class="tagline">Master the most common French verbs with interactive practice</p>
             </div>
-            <div id="feedback" class="feedback"></div>
-            <div id="correct-answer" class="correct-answer"></div>
-            <button id="continue-btn" onclick="nextQuestion()">Continue</button>
+            
+            <div class="card">
+                <h2 class="card-title">Choose a Practice Set</h2>
+                <p class="text-center">Each set contains 10 essential French verbs to practice</p>
+                
+                <div class="sets-grid">
+                    <button class="set-btn" onclick="startPractice(1)">Set 1<br>Basic Verbs</button>
+                    <button class="set-btn" onclick="startPractice(2)">Set 2<br>Essential Verbs</button>
+                    <button class="set-btn" onclick="startPractice(3)">Set 3<br>Common Verbs</button>
+                    <button class="set-btn" onclick="startPractice(4)">Set 4<br>Daily Verbs</button>
+                    <button class="set-btn" onclick="startPractice(5)">Set 5<br>Action Verbs</button>
+                    <button class="set-btn" onclick="startPractice(6)">Set 6<br>Movement Verbs</button>
+                    <button class="set-btn" onclick="startPractice(7)">Set 7<br>Reflexive Verbs</button>
+                    <button class="set-btn" onclick="startPractice(8)">Set 8<br>Regular Verbs</button>
+                    <button class="set-btn" onclick="startPractice(9)">Set 9<br>Irregular Verbs</button>
+                    <button class="set-btn" onclick="startPractice(10)">Set 10<br>Communication</button>
+                    <button class="set-btn" onclick="startPractice(11)">Set 11<br>Travel Verbs</button>
+                    <button class="set-btn" onclick="startPractice(12)">Set 12<br>Emotion Verbs</button>
+                    <button class="set-btn" onclick="startPractice(13)">Set 13<br>Learning Verbs</button>
+                    <button class="set-btn" onclick="startPractice(14)">Set 14<br>Social Verbs</button>
+                    <button class="set-btn" onclick="startPractice(15)">Set 15<br>Work Verbs</button>
+                    <button class="set-btn" onclick="startPractice(16)">Set 16<br>Study Verbs</button>
+                    <button class="set-btn" onclick="startPractice(17)">Set 17<br>Activity Verbs</button>
+                    <button class="set-btn" onclick="startPractice(18)">Set 18<br>Creative Verbs</button>
+                    <button class="set-btn" onclick="startPractice(19)">Set 19<br>Special Verbs</button>
+                    <button class="set-btn" onclick="startPractice(20)">Set 20<br>Advanced Verbs</button>
+                </div>
+                
+                <button class="btn btn-danger btn-lg btn-block mt-4" onclick="startMasterTest()">
+                    Master Challenge (100 Verbs)
+                </button>
+            </div>
         </div>
-    </div>
+        
+        <!-- Practice Page -->
+        <div id="practice-page" class="hidden">
+            <div class="card">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <button class="btn btn-outline btn-sm" onclick="returnToMenu()">
+                        ← Back to Menu
+                    </button>
+                    <h2 class="text-center flex-grow-1">Verb Practice</h2>
+                </div>
+                
+                <div class="progress">
+                    <div id="progress-text">Verb 1 of 10</div>
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill" id="progress-bar" style="width: 10%"></div>
+                    </div>
+                </div>
+                
+                <div class="question-container">
+                    <div class="question-text" id="question-text"></div>
+                    
+                    <div class="hint-container">
+                        <button class="hint-btn" onclick="showHint()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                            </svg>
+                            Need a hint?
+                        </button>
+                        <div class="hint-text" id="hint-text"></div>
+                    </div>
+                    
+                    <input type="text" class="form-control verb-input" id="user-answer" placeholder="Type the French verb..." autocomplete="off">
+                    
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="checkAnswer()">Check Answer</button>
+                        <button class="btn btn-info" onclick="showAnswer()">Show Answer</button>
+                    </div>
+                    
+                    <div id="feedback" class="feedback"></div>
+                    <div id="correct-answer" class="correct-answer text-center"></div>
+                    
+                    <button id="continue-btn" class="btn btn-success btn-block mt-3 hidden" onclick="nextQuestion()">
+                        Continue to Next Verb
+                    </button>
+                </div>
+            </div>
+        </div>
 
-    <!-- Results Page -->
-    <div id="results-page" class="practice-container">
-        <div>
-            <a href="#" onclick="returnToMenu()">← Back to Menu</a>
-            <h2 style="text-align: center;">Practice Results</h2>
+        <!-- Results Page -->
+        <div id="results-page" class="hidden">
+            <div class="card">
+                <button class="btn btn-outline btn-sm mb-4" onclick="returnToMenu()">
+                    ← Back to Menu
+                </button>
+                
+                <h2 class="card-title">Practice Results</h2>
+                
+                <div id="results-summary" class="text-center">
+                    <div id="results-score" class="results-score"></div>
+                    <p id="results-message"></p>
+                </div>
+                
+                <div id="mistakes-container" class="mt-4">
+                    <h3 class="text-center mb-3">Your Mistakes</h3>
+                    <div id="mistakes-list" class="mistakes-list"></div>
+                </div>
+                
+                <div class="btn-group mt-4">
+                    <button id="retry-btn" class="btn btn-warning" onclick="retryMistakes()">Retry Mistakes</button>
+                    <button id="new-set-btn" class="btn btn-primary" onclick="returnToMenu()">New Practice Set</button>
+                </div>
+            </div>
         </div>
-        
-        <div class="results" id="results-summary"></div>
-        
-        <div id="mistakes-container">
-            <h3 style="text-align: center;">Your Mistakes</h3>
-            <div id="mistakes-list"></div>
+
+        <!-- Test Page -->
+        <div id="test-page" class="hidden">
+            <div class="card">
+                <button class="btn btn-outline btn-sm mb-4" onclick="returnToMenu()">
+                    ← Back to Menu
+                </button>
+                
+                <h2 class="card-title">Master Challenge</h2>
+                
+                <div class="test-instructions" id="test-instructions">
+                    <strong>Challenge Rules:</strong> No hints, no answer reveals. 
+                    Complete all verbs to see your score and mistakes.
+                </div>
+                
+                <div class="progress">
+                    <div id="test-progress-text">Verb 1 of 5</div>
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill" id="test-progress-bar" style="width: 20%"></div>
+                    </div>
+                </div>
+                
+                <div class="question-container">
+                    <div class="question-text" id="test-question-text"></div>
+                    
+                    <input type="text" class="form-control verb-input" id="test-user-answer" placeholder="Type the French verb..." autocomplete="off">
+                    
+                    <button class="btn btn-primary btn-block" onclick="checkTestAnswer()">Submit Answer</button>
+                    
+                    <div id="test-submitted-feedback" class="feedback hidden">
+                        Answer submitted! Moving to next verb...
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <button id="retry-btn" onclick="retryMistakes()">Retry Mistakes</button>
-        <button id="new-set-btn" onclick="returnToMenu()">Practice New Set</button>
+
+        <!-- Test Results Page -->
+        <div id="test-results-page" class="hidden">
+            <div class="card">
+                <button class="btn btn-outline btn-sm mb-4" onclick="returnToMenu()">
+                    ← Back to Menu
+                </button>
+                
+                <h2 class="card-title">Challenge Results</h2>
+                
+                <div class="text-center">
+                    <div id="test-results-score" class="results-score"></div>
+                    <p id="test-results-message" class="mb-4"></p>
+                </div>
+                
+                <div id="test-mistakes-container" class="mt-4">
+                    <h3 class="text-center mb-3">Your Mistakes</h3>
+                    <div id="test-mistakes-list" class="mistakes-list"></div>
+                </div>
+                
+                <button id="new-test-btn" class="btn btn-danger btn-block mt-4" onclick="returnToMenu()">
+                    Back to Menu
+                </button>
+            </div>
+        </div>
     </div>
 
     <!-- Audio elements for sound effects -->
     <audio id="correctSound" src="https://assets.mixkit.co/sfx/preview/mixkit-correct-answer-tone-2870.mp3" preload="auto"></audio>
     <audio id="wrongSound" src="https://assets.mixkit.co/sfx/preview/mixkit-wrong-answer-fail-notification-946.mp3" preload="auto"></audio>
+    <audio id="celebrationSound" src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3" preload="auto"></audio>
 
     <script>
         // Twenty sets of 10 French verbs each with English translations
@@ -499,11 +901,22 @@
         let shuffledVerbs = [];
         let mistakes = [];
         let currentScore = 0;
+        let isRetryMode = false;
+        let initialMistakesCount = 0;
+        
+        // Test state
+        let testVerbs = [];
+        let testCurrentQuestionIndex = 0;
+        let testMistakes = [];
+        let testScore = 0;
 
         // DOM elements
         const mainMenu = document.getElementById('main-menu');
         const practicePage = document.getElementById('practice-page');
         const resultsPage = document.getElementById('results-page');
+        const testPage = document.getElementById('test-page');
+        const testResultsPage = document.getElementById('test-results-page');
+        
         const questionText = document.getElementById('question-text');
         const userAnswer = document.getElementById('user-answer');
         const feedback = document.getElementById('feedback');
@@ -511,14 +924,32 @@
         const continueBtn = document.getElementById('continue-btn');
         const retryBtn = document.getElementById('retry-btn');
         const newSetBtn = document.getElementById('new-set-btn');
-        const progressDisplay = document.getElementById('progress');
+        const progressText = document.getElementById('progress-text');
+        const progressBar = document.getElementById('progress-bar');
         const resultsSummary = document.getElementById('results-summary');
+        const resultsScore = document.getElementById('results-score');
+        const resultsMessage = document.getElementById('results-message');
         const mistakesList = document.getElementById('mistakes-list');
+        const mistakesContainer = document.getElementById('mistakes-container');
         const hintText = document.getElementById('hint-text');
+        
+        // Test elements
+        const testQuestionText = document.getElementById('test-question-text');
+        const testUserAnswer = document.getElementById('test-user-answer');
+        const testProgressText = document.getElementById('test-progress-text');
+        const testProgressBar = document.getElementById('test-progress-bar');
+        const testResultsScore = document.getElementById('test-results-score');
+        const testResultsMessage = document.getElementById('test-results-message');
+        const testInstructions = document.getElementById('test-instructions');
+        const testSubmittedFeedback = document.getElementById('test-submitted-feedback');
+        const testMistakesList = document.getElementById('test-mistakes-list');
+        const testMistakesContainer = document.getElementById('test-mistakes-container');
+        const newTestBtn = document.getElementById('new-test-btn');
         
         // Audio elements
         const correctSound = document.getElementById('correctSound');
         const wrongSound = document.getElementById('wrongSound');
+        const celebrationSound = document.getElementById('celebrationSound');
 
         // Start practice with selected set
         function startPractice(setNumber) {
@@ -526,13 +957,17 @@
             currentQuestionIndex = 0;
             currentScore = 0;
             mistakes = [];
+            isRetryMode = false;
+            initialMistakesCount = 0;
             
             // Shuffle the verbs for random order
             shuffledVerbs = [...verbSets[setNumber]].sort(() => Math.random() - 0.5);
             
-            mainMenu.style.display = 'none';
-            resultsPage.style.display = 'none';
-            practicePage.style.display = 'block';
+            mainMenu.classList.add('hidden');
+            resultsPage.classList.add('hidden');
+            testPage.classList.add('hidden');
+            testResultsPage.classList.add('hidden');
+            practicePage.classList.remove('hidden');
             showQuestion();
         }
 
@@ -540,14 +975,8 @@
         function showQuestion() {
             const verb = shuffledVerbs[currentQuestionIndex];
             
-            // Create question text with hint icon
-            questionText.innerHTML = `
-                ${verb.english}
-                <div class="hint-icon" onclick="showHint()">i</div>
-            `;
-            
+            questionText.textContent = verb.english;
             userAnswer.value = '';
-            userAnswer.focus();
             
             // Clear feedback and hint
             feedback.textContent = '';
@@ -555,10 +984,17 @@
             correctAnswerDisplay.textContent = '';
             hintText.textContent = '';
             hintText.style.display = 'none';
-            continueBtn.style.display = 'none';
+            continueBtn.classList.add('hidden');
             
             // Update progress
-            progressDisplay.textContent = `Verb ${currentQuestionIndex + 1} of ${shuffledVerbs.length}`;
+            const progressPercent = ((currentQuestionIndex + 1) / shuffledVerbs.length) * 100;
+            progressText.textContent = `Verb ${currentQuestionIndex + 1} of ${shuffledVerbs.length}`;
+            progressBar.style.width = `${progressPercent}%`;
+            
+            // Focus and open keyboard
+            setTimeout(() => {
+                userAnswer.focus();
+            }, 100);
         }
 
         // Show hint for current verb
@@ -592,18 +1028,23 @@
             const answer = userAnswer.value.trim().toLowerCase();
             
             if (answer === verb.french) {
-                feedback.textContent = "Correct!";
+                feedback.textContent = "Correct! Well done!";
                 feedback.className = "feedback correct";
                 currentScore++;
                 // Play correct sound
                 correctSound.currentTime = 0;
                 correctSound.play();
-                setTimeout(nextQuestion, 1500);
+                
+                // Keep keyboard open by focusing on the next question
+                setTimeout(() => {
+                    nextQuestion();
+                    userAnswer.focus();
+                }, 1500);
             } else {
-                feedback.textContent = "Incorrect";
+                feedback.textContent = "Incorrect. Try again!";
                 feedback.className = "feedback incorrect";
                 correctAnswerDisplay.textContent = "Correct answer: " + verb.french;
-                continueBtn.style.display = 'block';
+                continueBtn.classList.remove('hidden');
                 
                 // Play wrong sound
                 wrongSound.currentTime = 0;
@@ -615,6 +1056,11 @@
                     french: verb.french,
                     userAnswer: answer
                 });
+                
+                // Set initial mistakes count on first mistake in regular mode
+                if (!isRetryMode && initialMistakesCount === 0) {
+                    initialMistakesCount = 1; // At least one mistake now
+                }
             }
         }
 
@@ -623,10 +1069,10 @@
             const verb = shuffledVerbs[currentQuestionIndex];
             
             userAnswer.value = verb.french;
-            feedback.textContent = "Here's the answer:";
+            feedback.textContent = "Here's the correct answer:";
             feedback.className = "feedback correct";
             correctAnswerDisplay.textContent = verb.french;
-            continueBtn.style.display = 'block';
+            continueBtn.classList.remove('hidden');
             
             // Play wrong sound since they needed to see the answer
             wrongSound.currentTime = 0;
@@ -639,6 +1085,11 @@
                     french: verb.french,
                     userAnswer: ""
                 });
+                
+                // Set initial mistakes count on first mistake in regular mode
+                if (!isRetryMode && initialMistakesCount === 0) {
+                    initialMistakesCount = 1; // At least one mistake now
+                }
             }
         }
 
@@ -650,40 +1101,110 @@
                 showResults();
             } else {
                 showQuestion();
+                // Keep keyboard open by focusing on the input
+                setTimeout(() => {
+                    userAnswer.focus();
+                }, 100);
             }
         }
 
         // Show results after completing set
         function showResults() {
-            practicePage.style.display = 'none';
-            resultsPage.style.display = 'block';
+            practicePage.classList.add('hidden');
+            resultsPage.classList.remove('hidden');
             
             // Calculate score percentage
             const scorePercentage = Math.round((currentScore / shuffledVerbs.length) * 100);
             
-            // Display summary
-            resultsSummary.innerHTML = `
-                <p>You completed <strong>Set ${currentSet}</strong> with <strong>${currentScore}/${shuffledVerbs.length}</strong> correct answers (${scorePercentage}%)</p>
-            `;
+            // Display score
+            resultsScore.textContent = `${currentScore}/${shuffledVerbs.length} (${scorePercentage}%)`;
+            
+            // Display appropriate message
+            if (isRetryMode) {
+                if (mistakes.length === 0) {
+                    resultsMessage.innerHTML = `
+                        <div class="perfect-score">Perfect! You corrected all your mistakes!</div>
+                        <p class="mt-3">You've mastered this set!</p>
+                    `;
+                    mistakesContainer.innerHTML = '';
+                    retryBtn.classList.add('hidden');
+                    createConfetti();
+                    celebrationSound.play();
+                } else {
+                    resultsMessage.innerHTML = `
+                        <p>You completed <strong>Mistakes Review</strong></p>
+                        <p>You corrected ${initialMistakesCount - mistakes.length} of ${initialMistakesCount} mistakes</p>
+                    `;
+                    retryBtn.classList.remove('hidden');
+                }
+            } else {
+                if (scorePercentage === 100) {
+                    resultsMessage.innerHTML = `
+                        <div class="perfect-score">Perfect Score! Excellent work!</div>
+                    `;
+                    createConfetti();
+                    celebrationSound.play();
+                } else if (scorePercentage >= 80) {
+                    resultsMessage.innerHTML = `
+                        <div class="perfect-score">Great Job! Almost perfect!</div>
+                        <p class="mt-3">You're doing really well with these verbs!</p>
+                    `;
+                } else if (scorePercentage >= 60) {
+                    resultsMessage.innerHTML = `
+                        <p>Good effort! You're making progress!</p>
+                        <p class="mt-3">Keep practicing to improve your score.</p>
+                    `;
+                } else {
+                    resultsMessage.innerHTML = `
+                        <p>Practice makes perfect!</p>
+                        <p class="mt-3">Review your mistakes and try again to improve.</p>
+                    `;
+                }
+                
+                if (mistakes.length === 0) {
+                    mistakesContainer.innerHTML = `
+                        <h3 class="text-center perfect-score">Perfect! No mistakes!</h3>
+                    `;
+                    retryBtn.classList.add('hidden');
+                } else {
+                    initialMistakesCount = mistakes.length;
+                    retryBtn.classList.remove('hidden');
+                }
+            }
             
             // Display mistakes if any
             if (mistakes.length > 0) {
                 mistakesList.innerHTML = mistakes.map(mistake => `
                     <div class="mistake-item">
                         <strong>${mistake.english}</strong><br>
-                        <span class="mistake-answer">Your answer: ${mistake.userAnswer || "(skipped)"}</span><br>
+                        <span class="user-answer">Your answer: ${mistake.userAnswer || "(skipped)"}</span><br>
                         <span class="correct-answer">Correct answer: ${mistake.french}</span>
                     </div>
                 `).join('');
-                retryBtn.style.display = 'block';
-            } else {
-                mistakesContainer.innerHTML = `
-                    <h3 style="text-align: center; color: green;">Perfect! No mistakes!</h3>
-                `;
-                retryBtn.style.display = 'none';
             }
             
-            newSetBtn.style.display = 'block';
+            newSetBtn.classList.remove('hidden');
+        }
+
+        // Create celebration confetti
+        function createConfetti() {
+            const colors = ['#4361ee', '#3f37c9', '#4895ef', '#4cc9f0', '#f72585'];
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = Math.random() * 10 + 5 + 'px';
+                confetti.style.height = Math.random() * 10 + 5 + 'px';
+                confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+                document.body.appendChild(confetti);
+                
+                // Remove confetti after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
         }
 
         // Retry mistakes
@@ -698,28 +1219,182 @@
             
             currentQuestionIndex = 0;
             currentScore = 0;
+            initialMistakesCount = mistakes.length;
             mistakes = [];
+            isRetryMode = true;
             
-            resultsPage.style.display = 'none';
-            practicePage.style.display = 'block';
+            resultsPage.classList.add('hidden');
+            practicePage.classList.remove('hidden');
             showQuestion();
         }
 
         // Return to menu
         function returnToMenu() {
-            mainMenu.style.display = 'block';
-            practicePage.style.display = 'none';
-            resultsPage.style.display = 'none';
+            mainMenu.classList.remove('hidden');
+            practicePage.classList.add('hidden');
+            resultsPage.classList.add('hidden');
+            testPage.classList.add('hidden');
+            testResultsPage.classList.add('hidden');
+        }
+
+        // Start master test
+        function startMasterTest() {
+            // Combine all verbs from all sets and select 100 random ones
+            testVerbs = Object.values(verbSets).flat().sort(() => Math.random() - 0.5).slice(0, 100);
+            
+            testCurrentQuestionIndex = 0;
+            testScore = 0;
+            testMistakes = [];
+            
+            mainMenu.classList.add('hidden');
+            practicePage.classList.add('hidden');
+            resultsPage.classList.add('hidden');
+            testResultsPage.classList.add('hidden');
+            testPage.classList.remove('hidden');
+            
+            showTestQuestion();
+        }
+
+        // Show test question
+        function showTestQuestion() {
+            const verb = testVerbs[testCurrentQuestionIndex];
+            
+            testQuestionText.textContent = verb.english;
+            testUserAnswer.value = '';
+            
+            // Show instructions only for first question
+            if (testCurrentQuestionIndex > 0) {
+                testInstructions.classList.add('hidden');
+            } else {
+                testInstructions.classList.remove('hidden');
+            }
+            
+            // Update progress
+            const progressPercent = ((testCurrentQuestionIndex + 1) / testVerbs.length) * 100;
+            testProgressText.textContent = `Verb ${testCurrentQuestionIndex + 1} of ${testVerbs.length}`;
+            testProgressBar.style.width = `${progressPercent}%`;
+            
+            testSubmittedFeedback.classList.add('hidden');
+            
+            // Focus and open keyboard
+            setTimeout(() => {
+                testUserAnswer.focus();
+            }, 100);
+        }
+
+        // Check test answer
+        function checkTestAnswer() {
+            const verb = testVerbs[testCurrentQuestionIndex];
+            const answer = testUserAnswer.value.trim().toLowerCase();
+            
+            // Show submitted feedback
+            testSubmittedFeedback.classList.remove('hidden');
+            
+            if (answer === verb.french) {
+                testScore++;
+            } else {
+                // Record mistake
+                testMistakes.push({
+                    english: verb.english,
+                    french: verb.french,
+                    userAnswer: answer
+                });
+            }
+            
+            // Add slight delay before moving to next question
+            setTimeout(() => {
+                nextTestQuestion();
+                testUserAnswer.focus();
+            }, 500);
+        }
+
+        // Next test question
+        function nextTestQuestion() {
+            testCurrentQuestionIndex++;
+            
+            if (testCurrentQuestionIndex >= testVerbs.length) {
+                showTestResults();
+            } else {
+                showTestQuestion();
+                // Keep keyboard open by focusing on the input
+                setTimeout(() => {
+                    testUserAnswer.focus();
+                }, 100);
+            }
+        }
+
+        // Show test results
+        function showTestResults() {
+            testPage.classList.add('hidden');
+            testResultsPage.classList.remove('hidden');
+            
+            // Calculate score percentage
+            const scorePercentage = Math.round((testScore / testVerbs.length) * 100);
+            
+            // Display score
+            testResultsScore.textContent = `${testScore}/${testVerbs.length} (${scorePercentage}%)`;
+            
+            // Display appropriate message
+            if (scorePercentage === 100) {
+                testResultsMessage.innerHTML = `
+                    <div class="perfect-score">Master Level Achieved!</div>
+                    <p class="mt-3">You've demonstrated complete mastery of these verbs!</p>
+                `;
+                createConfetti();
+                celebrationSound.play();
+            } else if (scorePercentage >= 90) {
+                testResultsMessage.innerHTML = `
+                    <div class="perfect-score">Excellent Performance!</div>
+                    <p class="mt-3">You're almost at mastery level!</p>
+                `;
+            } else if (scorePercentage >= 75) {
+                testResultsMessage.innerHTML = `
+                    <p>Strong Performance!</p>
+                    <p class="mt-3">You're well on your way to mastering these verbs.</p>
+                `;
+            } else if (scorePercentage >= 50) {
+                testResultsMessage.innerHTML = `
+                    <p>Good Effort!</p>
+                    <p class="mt-3">Keep practicing to improve your mastery.</p>
+                `;
+            } else {
+                testResultsMessage.innerHTML = `
+                    <p>Practice Makes Perfect!</p>
+                    <p class="mt-3">Review your mistakes and try again to improve.</p>
+                `;
+            }
+            
+            // Display mistakes if any
+            if (testMistakes.length > 0) {
+                testMistakesList.innerHTML = testMistakes.map(mistake => `
+                    <div class="mistake-item">
+                        <strong>${mistake.english}</strong><br>
+                        <span class="user-answer">Your answer: ${mistake.userAnswer || "(skipped)"}</span><br>
+                        <span class="correct-answer">Correct answer: ${mistake.french}</span>
+                    </div>
+                `).join('');
+            } else {
+                testMistakesContainer.innerHTML = `
+                    <h3 class="text-center perfect-score">Perfect! No mistakes!</h3>
+                `;
+            }
         }
 
         // Allow pressing Enter to check answer
         userAnswer.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
-                if (continueBtn.style.display === 'block') {
-                    nextQuestion();
-                } else {
+                if (continueBtn.classList.contains('hidden')) {
                     checkAnswer();
+                } else {
+                    nextQuestion();
                 }
+            }
+        });
+        
+        // Allow pressing Enter in test
+        testUserAnswer.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkTestAnswer();
             }
         });
     </script>
