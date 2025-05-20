@@ -1,1402 +1,1884 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frenchitute</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #4361ee;
-            --primary-light: #4895ef;
-            --secondary: #3f37c9;
-            --success: #4cc9f0;
-            --danger: #f72585;
-            --warning: #f8961e;
-            --info: #4895ef;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --white: #ffffff;
-            --gray: #6c757d;
-            --gray-light: #e9ecef;
-            --border-radius: 8px;
-            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FrenchiTute - Learn French Verbs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #2C3E50;
+      --blue: #2980B9;
+      --teal: #1ABC9C;
+      --purple: #8E44AD;
+      --red: #C0392B;
+      --gray: #F7F9FA;
+      --orange: #E67E22;
+      --primary: #4361ee;
+      --primary-light: #4895ef;
+      --secondary: #3f37c9;
+      --success: #4cc9f0;
+      --danger: #f72585;
+      --warning: #f8961e;
+      --info: #4895ef;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --white: #ffffff;
+      --gray-dark: #6c757d;
+      --gray-light: #e9ecef;
+      --border-radius: 8px;
+      --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f5f7fa;
-            color: var(--dark);
-            line-height: 1.6;
-        }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f5f7fa;
+      color: var(--dark);
+      line-height: 1.6;
+    }
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+    /* Header Styles */
+    .header-container {
+      width: 100%;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-        /* Header Styles */
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding: 20px 0;
-        }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 50px;
+      padding: 0 8px;
+      overflow: hidden;
+      white-space: nowrap;
+      gap: 8px;
+    }
 
-        .logo {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+    .logo {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
 
-        .tagline {
-            color: var(--gray);
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-        }
+    .logo img {
+      height: 80px;
+      width: auto;
+      display: block;
+    }
 
-        /* Card Styles */
-        .card {
-            background-color: var(--white);
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            padding: 25px;
-            margin-bottom: 25px;
-            transition: var(--transition);
-        }
+    .nav-links {
+      display: flex;
+      gap: 6px;
+      flex-shrink: 1;
+      overflow: hidden;
+    }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
+    .nav-item {
+      font-size: 11px;
+      font-weight: 500;
+      text-decoration: none;
+      padding: 4px 6px;
+      border-radius: 3px;
+      transition: background 0.25s ease;
+      white-space: nowrap;
+    }
 
-        .card-title {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--primary);
-            text-align: center;
-        }
+    .nav-item:hover {
+      background: var(--gray);
+    }
 
-        /* Button Styles */
-        .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            font-size: 1rem;
-            font-weight: 500;
-            text-align: center;
-            text-decoration: none;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-        }
+    .verbs { color: var(--blue); }
+    .articles { color: var(--purple); }
+    .prepositions { color: var(--red); }
+    .tense { color: var(--teal); }
+    .blogs { color: var(--orange); }
 
-        .btn-primary {
-            background-color: var(--primary);
-            color: var(--white);
-        }
+    .contact-btn {
+      background: var(--teal);
+      color: white !important;
+      padding: 4px 8px;
+      font-size: 11px;
+      border-radius: 4px;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
 
-        .btn-primary:hover {
-            background-color: var(--secondary);
-            transform: translateY(-2px);
-        }
+    .contact-btn:hover {
+      background: #16A085;
+    }
 
-        .btn-success {
-            background-color: var(--success);
-            color: var(--white);
-        }
+    @media (max-width: 480px) {
+      .nav-item { font-size: 10px; padding: 3px 5px; }
+      .contact-btn { font-size: 10px; padding: 3px 6px; }
+      .logo img { height: 80px; }
+    }
 
-        .btn-success:hover {
-            background-color: #3aa8d8;
-            transform: translateY(-2px);
-        }
+    /* Main Content Styles */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
 
-        .btn-warning {
-            background-color: var(--warning);
-            color: var(--white);
-        }
+    /* Card Styles */
+    .card {
+      background-color: var(--white);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 25px;
+      margin-bottom: 25px;
+      transition: var(--transition);
+    }
 
-        .btn-warning:hover {
-            background-color: #e07e0c;
-            transform: translateY(-2px);
-        }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
 
-        .btn-danger {
-            background-color: var(--danger);
-            color: var(--white);
-        }
+    .card-title {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: var(--primary);
+      text-align: center;
+    }
 
-        .btn-danger:hover {
-            background-color: #e51778;
-            transform: translateY(-2px);
-        }
+    /* Button Styles */
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: 500;
+      text-align: center;
+      text-decoration: none;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+    }
 
-        .btn-info {
-            background-color: var(--info);
-            color: var(--white);
-        }
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--white);
+    }
 
-        .btn-info:hover {
-            background-color: #3a7bbd;
-            transform: translateY(-2px);
-        }
+    .btn-primary:hover {
+      background-color: var(--secondary);
+      transform: translateY(-2px);
+    }
 
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
+    .btn-success {
+      background-color: var(--success);
+      color: var(--white);
+    }
 
-        .btn-outline:hover {
-            background-color: var(--primary);
-            color: var(--white);
-        }
+    .btn-success:hover {
+      background-color: #3aa8d8;
+      transform: translateY(-2px);
+    }
 
-        .btn-sm {
-            padding: 8px 16px;
-            font-size: 0.9rem;
-        }
+    .btn-warning {
+      background-color: var(--warning);
+      color: var(--white);
+    }
 
-        .btn-lg {
-            padding: 15px 30px;
-            font-size: 1.1rem;
-        }
+    .btn-warning:hover {
+      background-color: #e07e0c;
+      transform: translateY(-2px);
+    }
 
-        .btn-block {
-            display: block;
-            width: 100%;
-        }
+    .btn-danger {
+      background-color: var(--danger);
+      color: var(--white);
+    }
 
-        .btn-group {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-            justify-content: center;
-        }
+    .btn-danger:hover {
+      background-color: #e51778;
+      transform: translateY(-2px);
+    }
 
-        /* Form Elements */
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            font-size: 1rem;
-            border: 2px solid var(--gray-light);
-            border-radius: var(--border-radius);
-            transition: var(--transition);
-            margin-bottom: 15px;
-        }
+    .btn-info {
+      background-color: var(--info);
+      color: var(--white);
+    }
 
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
-        }
+    .btn-info:hover {
+      background-color: #3a7bbd;
+      transform: translateY(-2px);
+    }
 
-        .form-label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
+    .btn-outline {
+      background-color: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
 
-        /* Feedback Messages */
-        .feedback {
-            padding: 15px;
-            border-radius: var(--border-radius);
-            margin: 15px 0;
-            text-align: center;
-            font-weight: 500;
-        }
+    .btn-outline:hover {
+      background-color: var(--primary);
+      color: var(--white);
+    }
 
-        .feedback.correct {
-            background-color: rgba(76, 201, 240, 0.2);
-            color: #1e88e5;
-            border-left: 4px solid var(--success);
-        }
+    .btn-sm {
+      padding: 8px 16px;
+      font-size: 0.9rem;
+    }
 
-        .feedback.incorrect {
-            background-color: rgba(247, 37, 133, 0.1);
-            color: var(--danger);
-            border-left: 4px solid var(--danger);
-        }
+    .btn-lg {
+      padding: 15px 30px;
+      font-size: 1.1rem;
+    }
 
-        /* Progress Indicator */
-        .progress {
-            text-align: center;
-            margin: 20px 0;
-            color: var(--gray);
-            font-weight: 500;
-        }
+    .btn-block {
+      display: block;
+      width: 100%;
+    }
 
-        .progress-bar {
-            height: 6px;
-            background-color: var(--gray-light);
-            border-radius: 3px;
-            margin-top: 10px;
-            overflow: hidden;
-        }
+    .btn-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      justify-content: center;
+    }
 
-        .progress-bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
-            transition: width 0.3s ease;
-        }
+    /* Form Elements */
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      font-size: 1rem;
+      border: 2px solid var(--gray-light);
+      border-radius: var(--border-radius);
+      transition: var(--transition);
+      margin-bottom: 15px;
+    }
 
-        /* Set Buttons Grid */
-        .sets-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 15px;
-            margin-top: 25px;
-        }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+    }
 
-        .set-btn {
-            background-color: var(--white);
-            border: 2px solid var(--gray-light);
-            border-radius: var(--border-radius);
-            padding: 15px;
-            text-align: center;
-            cursor: pointer;
-            transition: var(--transition);
-            font-weight: 500;
-        }
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
 
-        .set-btn:hover {
-            border-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: var(--box-shadow);
-        }
+    /* Feedback Messages */
+    .feedback {
+      padding: 15px;
+      border-radius: var(--border-radius);
+      margin: 15px 0;
+      text-align: center;
+      font-weight: 500;
+    }
 
-        .set-btn.active {
-            background-color: var(--primary);
-            color: var(--white);
-            border-color: var(--primary);
-        }
+    .feedback.correct {
+      background-color: rgba(76, 201, 240, 0.2);
+      color: #1e88e5;
+      border-left: 4px solid var(--success);
+    }
 
-        /* Hint Styles */
-        .hint-container {
-            margin-top: 15px;
-        }
+    .feedback.incorrect {
+      background-color: rgba(247, 37, 133, 0.1);
+      color: var(--danger);
+      border-left: 4px solid var(--danger);
+    }
 
-        .hint-btn {
-            background-color: transparent;
-            border: none;
-            color: var(--info);
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            margin: 0 auto;
-        }
+    /* Progress Indicator */
+    .progress {
+      text-align: center;
+      margin: 20px 0;
+      color: var(--gray-dark);
+      font-weight: 500;
+    }
 
-        .hint-btn:hover {
-            text-decoration: underline;
-        }
+    .progress-bar {
+      height: 6px;
+      background-color: var(--gray-light);
+      border-radius: 3px;
+      margin-top: 10px;
+      overflow: hidden;
+    }
 
-        .hint-text {
-            background-color: rgba(72, 149, 239, 0.1);
-            padding: 12px;
-            border-radius: var(--border-radius);
-            margin-top: 10px;
-            display: none;
-            border-left: 3px solid var(--info);
-        }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+      transition: width 0.3s ease;
+    }
 
-        /* Results Styles */
-        .results-score {
-            font-size: 2rem;
-            font-weight: 700;
-            text-align: center;
-            margin: 20px 0;
-            color: var(--primary);
-        }
+    /* Set Buttons Grid */
+    .sets-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 15px;
+      margin-top: 25px;
+    }
 
-        .perfect-score {
-            color: var(--success);
-            animation: pulse 1.5s infinite;
-        }
+    .set-btn {
+      background-color: var(--white);
+      border: 2px solid var(--gray-light);
+      border-radius: var(--border-radius);
+      padding: 15px;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: 500;
+    }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
+    .set-btn:hover {
+      border-color: var(--primary);
+      transform: translateY(-3px);
+      box-shadow: var(--box-shadow);
+    }
 
-        .mistakes-list {
-            margin-top: 25px;
-        }
+    .set-btn.active {
+      background-color: var(--primary);
+      color: var(--white);
+      border-color: var(--primary);
+    }
 
-        .mistake-item {
-            background-color: var(--light);
-            padding: 15px;
-            border-radius: var(--border-radius);
-            margin-bottom: 10px;
-            border-left: 4px solid var(--danger);
-        }
+    /* Hint Styles */
+    .hint-container {
+      margin-top: 15px;
+    }
 
-        .correct-answer {
-            color: var(--success);
-            font-weight: 500;
-        }
+    .hint-btn {
+      background-color: transparent;
+      border: none;
+      color: var(--info);
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin: 0 auto;
+    }
 
-        .user-answer {
-            color: var(--danger);
-            font-weight: 500;
-        }
+    .hint-btn:hover {
+      text-decoration: underline;
+    }
 
-        /* Test Styles */
-        .test-instructions {
-            background-color: rgba(248, 150, 30, 0.1);
-            padding: 15px;
-            border-radius: var(--border-radius);
-            margin: 20px 0;
-            border-left: 4px solid var(--warning);
-        }
+    .hint-text {
+      background-color: rgba(72, 149, 239, 0.1);
+      padding: 12px;
+      border-radius: var(--border-radius);
+      margin-top: 10px;
+      display: none;
+      border-left: 3px solid var(--info);
+    }
 
-        .test-instructions strong {
-            color: var(--warning);
-        }
+    /* Results Styles */
+    .results-score {
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      margin: 20px 0;
+      color: var(--primary);
+    }
 
-        /* Celebration Animation */
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background-color: var(--primary);
-            top: -10px;
-            z-index: 9999;
-            animation: confetti-fall 5s linear forwards;
-        }
+    .perfect-score {
+      color: var(--success);
+      animation: pulse 1.5s infinite;
+    }
 
-        @keyframes confetti-fall {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(720deg);
-                opacity: 0;
-            }
-        }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
 
-        /* Question Text Styles */
-        .question-text {
-            font-size: 2.5rem;
-            font-weight: 600;
-            text-align: center;
-            margin: 30px 0;
-            color: #2b2d42;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: var(--border-radius);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
+    .mistakes-list {
+      margin-top: 25px;
+    }
 
-        /* Input Field Styles */
-        .verb-input {
-            font-size: 1.5rem;
-            text-align: center;
-            padding: 15px;
-            margin: 20px auto;
-            max-width: 500px;
-            border: 2px solid var(--primary-light);
-            border-radius: var(--border-radius);
-            transition: var(--transition);
-        }
+    .mistake-item {
+      background-color: var(--light);
+      padding: 15px;
+      border-radius: var(--border-radius);
+      margin-bottom: 10px;
+      border-left: 4px solid var(--danger);
+    }
 
-        .verb-input:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
-        }
+    .correct-answer {
+      color: var(--success);
+      font-weight: 500;
+    }
 
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            .sets-grid {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            }
-            
-            .logo {
-                font-size: 2rem;
-            }
-            
-            .btn-group {
-                flex-direction: column;
-            }
-            
-            .btn {
-                width: 100%;
-            }
+    .user-answer {
+      color: var(--danger);
+      font-weight: 500;
+    }
 
-            .question-text {
-                font-size: 2rem;
-                padding: 15px;
-            }
+    /* Test Styles */
+    .test-instructions {
+      background-color: rgba(248, 150, 30, 0.1);
+      padding: 15px;
+      border-radius: var(--border-radius);
+      margin: 20px 0;
+      border-left: 4px solid var(--warning);
+    }
 
-            .verb-input {
-                font-size: 1.2rem;
-                padding: 12px;
-            }
-        }
+    .test-instructions strong {
+      color: var(--warning);
+    }
 
-        /* Utility Classes */
-        .text-center {
-            text-align: center;
-        }
-        
-        .mt-2 { margin-top: 0.5rem; }
-        .mt-3 { margin-top: 1rem; }
-        .mt-4 { margin-top: 1.5rem; }
-        .mt-5 { margin-top: 2rem; }
-        
-        .mb-2 { margin-bottom: 0.5rem; }
-        .mb-3 { margin-bottom: 1rem; }
-        .mb-4 { margin-bottom: 1.5rem; }
-        .mb-5 { margin-bottom: 2rem; }
-        
-        .hidden {
-            display: none;
-        }
-    </style>
+    /* Celebration Animation */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background-color: var(--primary);
+      top: -10px;
+      z-index: 9999;
+      animation: confetti-fall 5s linear forwards;
+    }
+
+    @keyframes confetti-fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    /* Question Text Styles */
+    .question-text {
+      font-size: 2.5rem;
+      font-weight: 600;
+      text-align: center;
+      margin: 30px 0;
+      color: #2b2d42;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: var(--border-radius);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Input Field Styles */
+    .verb-input {
+      font-size: 1.5rem;
+      text-align: center;
+      padding: 15px;
+      margin: 20px auto;
+      max-width: 500px;
+      border: 2px solid var(--primary-light);
+      border-radius: var(--border-radius);
+      transition: var(--transition);
+    }
+
+    .verb-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+    }
+
+    /* Coming Soon Page Styles */
+    .coming-soon {
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .coming-soon h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .coming-soon p {
+      font-size: 1.2rem;
+      color: var(--gray-dark);
+      max-width: 600px;
+      margin-bottom: 30px;
+    }
+
+    .animation-container {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      margin: 30px auto;
+    }
+
+    .animated-circle {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      animation: float 4s infinite ease-in-out;
+    }
+
+    .circle-1 {
+      background-color: var(--primary);
+      top: 20%;
+      left: 20%;
+      animation-delay: 0s;
+    }
+
+    .circle-2 {
+      background-color: var(--teal);
+      top: 60%;
+      left: 30%;
+      animation-delay: 0.5s;
+    }
+
+    .circle-3 {
+      background-color: var(--purple);
+      top: 30%;
+      left: 60%;
+      animation-delay: 1s;
+    }
+
+    .circle-4 {
+      background-color: var(--orange);
+      top: 70%;
+      left: 70%;
+      animation-delay: 1.5s;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) translateX(0);
+      }
+      50% {
+        transform: translateY(-30px) translateX(15px);
+      }
+    }
+
+    /* Contact Page Styles */
+    .contact-page {
+      padding: 40px 20px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-page h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: var(--teal);
+      text-align: center;
+    }
+
+    .contact-form {
+      background-color: var(--white);
+      padding: 30px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      margin-top: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid var(--gray-light);
+      border-radius: var(--border-radius);
+      font-family: 'Poppins', sans-serif;
+      transition: var(--transition);
+    }
+
+    .form-group textarea {
+      min-height: 120px;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(26, 188, 156, 0.2);
+    }
+
+    .submit-btn {
+      background-color: var(--teal);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: var(--transition);
+      display: block;
+      width: 100%;
+    }
+
+    .submit-btn:hover {
+      background-color: #16A085;
+      transform: translateY(-2px);
+    }
+
+    .contact-info {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .contact-info p {
+      margin-bottom: 10px;
+    }
+
+    .email-link {
+      color: var(--teal);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .email-link:hover {
+      text-decoration: underline;
+    }
+
+    .success-message {
+      background-color: rgba(26, 188, 156, 0.2);
+      color: #16A085;
+      padding: 15px;
+      border-radius: var(--border-radius);
+      margin-top: 20px;
+      text-align: center;
+      display: none;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .sets-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      }
+      
+      .question-text {
+        font-size: 2rem;
+        padding: 15px;
+      }
+
+      .verb-input {
+        font-size: 1.2rem;
+        padding: 12px;
+      }
+
+      .coming-soon h1 {
+        font-size: 2.2rem;
+      }
+
+      .coming-soon p {
+        font-size: 1rem;
+      }
+    }
+
+    /* Utility Classes */
+    .hidden {
+      display: none;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+    
+    .mt-2 { margin-top: 0.5rem; }
+    .mt-3 { margin-top: 1rem; }
+    .mt-4 { margin-top: 1.5rem; }
+    .mt-5 { margin-top: 2rem; }
+    
+    .mb-2 { margin-bottom: 0.5rem; }
+    .mb-3 { margin-bottom: 1rem; }
+    .mb-4 { margin-bottom: 1.5rem; }
+    .mb-5 { margin-bottom: 2rem; }
+
+    /* Flex utility classes */
+    .d-flex {
+      display: flex;
+    }
+    
+    .justify-content-between {
+      justify-content: space-between;
+    }
+    
+    .align-items-center {
+      align-items: center;
+    }
+    
+    .flex-grow-1 {
+      flex-grow: 1;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Main Menu -->
-        <div id="main-menu">
-            <div class="header">
-                <div class="logo">Frenchitute</div>
-                <p class="tagline">Makes Learning French Simple & Fun</p>
-            </div>
-            
-            <div class="card">
-                <h2 class="card-title">Choose a Practice Set</h2>
-                <p class="text-center">Each set contains 10 essential French verbs to practice</p>
-                
-                <div class="sets-grid">
-                    <button class="set-btn" onclick="startPractice(1)">Set 1<br>Basic Verbs</button>
-                    <button class="set-btn" onclick="startPractice(2)">Set 2<br>Essential Verbs</button>
-                    <button class="set-btn" onclick="startPractice(3)">Set 3<br>Common Verbs</button>
-                    <button class="set-btn" onclick="startPractice(4)">Set 4<br>Daily Verbs</button>
-                    <button class="set-btn" onclick="startPractice(5)">Set 5<br>Action Verbs</button>
-                    <button class="set-btn" onclick="startPractice(6)">Set 6<br>Movement Verbs</button>
-                    <button class="set-btn" onclick="startPractice(7)">Set 7<br>Reflexive Verbs</button>
-                    <button class="set-btn" onclick="startPractice(8)">Set 8<br>Regular Verbs</button>
-                    <button class="set-btn" onclick="startPractice(9)">Set 9<br>Irregular Verbs</button>
-                    <button class="set-btn" onclick="startPractice(10)">Set 10<br>Communication</button>
-                    <button class="set-btn" onclick="startPractice(11)">Set 11<br>Travel Verbs</button>
-                    <button class="set-btn" onclick="startPractice(12)">Set 12<br>Emotion Verbs</button>
-                    <button class="set-btn" onclick="startPractice(13)">Set 13<br>Learning Verbs</button>
-                    <button class="set-btn" onclick="startPractice(14)">Set 14<br>Social Verbs</button>
-                    <button class="set-btn" onclick="startPractice(15)">Set 15<br>Work Verbs</button>
-                    <button class="set-btn" onclick="startPractice(16)">Set 16<br>Study Verbs</button>
-                    <button class="set-btn" onclick="startPractice(17)">Set 17<br>Activity Verbs</button>
-                    <button class="set-btn" onclick="startPractice(18)">Set 18<br>Creative Verbs</button>
-                    <button class="set-btn" onclick="startPractice(19)">Set 19<br>Special Verbs</button>
-                    <button class="set-btn" onclick="startPractice(20)">Set 20<br>Advanced Verbs</button>
-                </div>
-                
-                <button class="btn btn-danger btn-lg btn-block mt-4" onclick="startMasterTest()">
-                    Master Challenge (100 Verbs)
-                </button>
-            </div>
+  <!-- Header -->
+  <div class="header-container">
+    <header class="header">
+      <!-- Logo Image Only -->
+      <div class="logo">
+        <img src="https://i.imgur.com/U5NOpsZ.png" alt="Frenchitute Logo">
+      </div>
+
+      <!-- Navigation Menu -->
+      <div class="nav-links">
+        <a href="#" class="nav-item verbs" id="verbs-link">Verbs</a>
+        <a href="#" class="nav-item articles" id="articles-link">Articles</a>
+        <a href="#" class="nav-item prepositions" id="prepositions-link">Prepositions</a>
+        <a href="#" class="nav-item tense" id="tense-link">Tense</a>
+        <a href="#" class="nav-item blogs" id="blogs-link">Blogs</a>
+      </div>
+
+      <!-- Contact Button -->
+      <a href="#" class="nav-item contact-btn" id="contact-link">Contact</a>
+    </header>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <!-- Verbs Page (Home/Landing Page) -->
+    <div id="verbs-page">
+      <!-- Main Menu -->
+      <div id="main-menu">
+        <div class="card">
+          <h2 class="card-title">VERB PRACTISE</h2>
+          <p class="text-center">Each set contains 10 essential French verbs to practice</p>
+          
+          <div class="sets-grid">
+            <button class="set-btn" onclick="startPractice(1)">Set 1<br>Basic Verbs</button>
+            <button class="set-btn" onclick="startPractice(2)">Set 2<br>Essential Verbs</button>
+            <button class="set-btn" onclick="startPractice(3)">Set 3<br>Common Verbs</button>
+            <button class="set-btn" onclick="startPractice(4)">Set 4<br>Daily Verbs</button>
+            <button class="set-btn" onclick="startPractice(5)">Set 5<br>Action Verbs</button>
+            <button class="set-btn" onclick="startPractice(6)">Set 6<br>Movement Verbs</button>
+            <button class="set-btn" onclick="startPractice(7)">Set 7<br>Reflexive Verbs</button>
+            <button class="set-btn" onclick="startPractice(8)">Set 8<br>Regular Verbs</button>
+            <button class="set-btn" onclick="startPractice(9)">Set 9<br>Irregular Verbs</button>
+            <button class="set-btn" onclick="startPractice(10)">Set 10<br>Communication</button>
+            <button class="set-btn" onclick="startPractice(11)">Set 11<br>Travel Verbs</button>
+            <button class="set-btn" onclick="startPractice(12)">Set 12<br>Emotion Verbs</button>
+            <button class="set-btn" onclick="startPractice(13)">Set 13<br>Learning Verbs</button>
+            <button class="set-btn" onclick="startPractice(14)">Set 14<br>Social Verbs</button>
+            <button class="set-btn" onclick="startPractice(15)">Set 15<br>Work Verbs</button>
+            <button class="set-btn" onclick="startPractice(16)">Set 16<br>Study Verbs</button>
+            <button class="set-btn" onclick="startPractice(17)">Set 17<br>Activity Verbs</button>
+            <button class="set-btn" onclick="startPractice(18)">Set 18<br>Creative Verbs</button>
+            <button class="set-btn" onclick="startPractice(19)">Set 19<br>Special Verbs</button>
+            <button class="set-btn" onclick="startPractice(20)">Set 20<br>Advanced Verbs</button>
+          </div>
+          
+          <button class="btn btn-danger btn-lg btn-block mt-4" onclick="startMasterTest()">
+            Master Challenge (100 Verbs)
+          </button>
+        </div>
+      </div>
+    </div>
+      
+    <!-- Practice Page -->
+    <div id="practice-page" class="hidden">
+      <div class="card">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <button class="btn btn-outline btn-sm" onclick="returnToMenu()">
+            ← Back to Menu
+          </button>
+          <h2 class="text-center flex-grow-1">Verb Practice</h2>
         </div>
         
-        <!-- Practice Page -->
-        <div id="practice-page" class="hidden">
-            <div class="card">
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <button class="btn btn-outline btn-sm" onclick="returnToMenu()">
-                        ← Back to Menu
-                    </button>
-                    <h2 class="text-center flex-grow-1">Verb Practice</h2>
-                </div>
-                
-                <div class="progress">
-                    <div id="progress-text">Verb 1 of 10</div>
-                    <div class="progress-bar">
-                        <div class="progress-bar-fill" id="progress-bar" style="width: 10%"></div>
-                    </div>
-                </div>
-                
-                <div class="question-container">
-                    <div class="question-text" id="question-text"></div>
-                    
-                    <div class="hint-container">
-                        <button class="hint-btn" onclick="showHint()">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
-                            </svg>
-                            Need a hint?
-                        </button>
-                        <div class="hint-text" id="hint-text"></div>
-                    </div>
-                    
-                    <input type="text" class="form-control verb-input" id="user-answer" placeholder="Type the French verb..." autocomplete="off">
-                    
-                    <div class="btn-group">
-                        <button class="btn btn-primary" onclick="checkAnswer()">Check Answer</button>
-                        <button class="btn btn-info" onclick="showAnswer()">Show Answer</button>
-                    </div>
-                    
-                    <div id="feedback" class="feedback"></div>
-                    <div id="correct-answer" class="correct-answer text-center"></div>
-                    
-                    <button id="continue-btn" class="btn btn-success btn-block mt-3 hidden" onclick="nextQuestion()">
-                        Continue to Next Verb
-                    </button>
-                </div>
-            </div>
+        <div class="progress">
+          <div id="progress-text">Verb 1 of 10</div>
+          <div class="progress-bar">
+            <div class="progress-bar-fill" id="progress-bar" style="width: 10%"></div>
+          </div>
         </div>
-
-        <!-- Results Page -->
-        <div id="results-page" class="hidden">
-            <div class="card">
-                <button class="btn btn-outline btn-sm mb-4" onclick="returnToMenu()">
-                    ← Back to Menu
-                </button>
-                
-                <h2 class="card-title">Practice Results</h2>
-                
-                <div id="results-summary" class="text-center">
-                    <div id="results-score" class="results-score"></div>
-                    <p id="results-message"></p>
-                </div>
-                
-                <div id="mistakes-container" class="mt-4">
-                    <h3 class="text-center mb-3">Your Mistakes</h3>
-                    <div id="mistakes-list" class="mistakes-list"></div>
-                </div>
-                
-                <div class="btn-group mt-4">
-                    <button id="retry-btn" class="btn btn-warning" onclick="retryMistakes()">Retry Mistakes</button>
-                    <button id="new-set-btn" class="btn btn-primary" onclick="returnToMenu()">New Practice Set</button>
-                </div>
-            </div>
+        
+        <div class="question-container">
+          <div class="question-text" id="question-text"></div>
+          
+          <div class="hint-container">
+            <button class="hint-btn" onclick="showHint()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+              </svg>
+              Need a hint?
+            </button>
+            <div class="hint-text" id="hint-text"></div>
+          </div>
+          
+          <input type="text" class="form-control verb-input" id="user-answer" placeholder="Type the French verb..." autocomplete="off">
+          
+          <div class="btn-group">
+            <button class="btn btn-primary" onclick="checkAnswer()">Check Answer</button>
+            <button class="btn btn-info" onclick="showAnswer()">Show Answer</button>
+          </div>
+          
+          <div id="feedback" class="feedback"></div>
+          <div id="correct-answer" class="correct-answer text-center"></div>
+          
+          <button id="continue-btn" class="btn btn-success btn-block mt-3 hidden" onclick="nextQuestion()">
+            Continue to Next Verb
+          </button>
         </div>
-
-        <!-- Test Page -->
-        <div id="test-page" class="hidden">
-            <div class="card">
-                <button class="btn btn-outline btn-sm mb-4" onclick="returnToMenu()">
-                    ← Back to Menu
-                </button>
-                
-                <h2 class="card-title">Master Challenge</h2>
-                
-                <div class="test-instructions" id="test-instructions">
-                    <strong>Challenge Rules:</strong> No hints, no answer reveals. 
-                    Complete all verbs to see your score and mistakes.
-                </div>
-                
-                <div class="progress">
-                    <div id="test-progress-text">Verb 1 of 5</div>
-                    <div class="progress-bar">
-                        <div class="progress-bar-fill" id="test-progress-bar" style="width: 20%"></div>
-                    </div>
-                </div>
-                
-                <div class="question-container">
-                    <div class="question-text" id="test-question-text"></div>
-                    
-                    <input type="text" class="form-control verb-input" id="test-user-answer" placeholder="Type the French verb..." autocomplete="off">
-                    
-                    <button class="btn btn-primary btn-block" onclick="checkTestAnswer()">Submit Answer</button>
-                    
-                    <div id="test-submitted-feedback" class="feedback hidden">
-                        Answer submitted! Moving to next verb...
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Test Results Page -->
-        <div id="test-results-page" class="hidden">
-            <div class="card">
-                <button class="btn btn-outline btn-sm mb-4" onclick="returnToMenu()">
-                    ← Back to Menu
-                </button>
-                
-                <h2 class="card-title">Challenge Results</h2>
-                
-                <div class="text-center">
-                    <div id="test-results-score" class="results-score"></div>
-                    <p id="test-results-message" class="mb-4"></p>
-                </div>
-                
-                <div id="test-mistakes-container" class="mt-4">
-                    <h3 class="text-center mb-3">Your Mistakes</h3>
-                    <div id="test-mistakes-list" class="mistakes-list"></div>
-                </div>
-                
-                <button id="new-test-btn" class="btn btn-danger btn-block mt-4" onclick="returnToMenu()">
-                    Back to Menu
-                </button>
-            </div>
-        </div>
+      </div>
     </div>
 
-    <!-- Audio elements for sound effects -->
-    <audio id="correctSound" src="https://assets.mixkit.co/sfx/preview/mixkit-correct-answer-tone-2870.mp3" preload="auto"></audio>
-    <audio id="wrongSound" src="https://assets.mixkit.co/sfx/preview/mixkit-wrong-answer-fail-notification-946.mp3" preload="auto"></audio>
-    <audio id="celebrationSound" src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3" preload="auto"></audio>
-
-    <script>
-        // Twenty sets of 10 French verbs each with English translations
-        const verbSets = {
-            1: [
-                { english: "to be", french: "être" },
-                { english: "to have", french: "avoir" },
-                { english: "to go", french: "aller" },
-                { english: "to do/make", french: "faire" },
-                { english: "to say/tell", french: "dire" },
-                { english: "to be able to", french: "pouvoir" },
-                { english: "to want", french: "vouloir" },
-                { english: "to see", french: "voir" },
-                { english: "to know (facts)", french: "savoir" },
-                { english: "to come", french: "venir" }
-            ],
-            2: [
-                { english: "to have to", french: "devoir" },
-                { english: "to take", french: "prendre" },
-                { english: "to put", french: "mettre" },
-                { english: "to give", french: "donner" },
-                { english: "to speak", french: "parler" },
-                { english: "to like/love", french: "aimer" },
-                { english: "to pass/spend time", french: "passer" },
-                { english: "to find", french: "trouver" },
-                { english: "to leave (something)", french: "laisser" },
-                { english: "to arrive", french: "arriver" }
-            ],
-            3: [
-                { english: "to believe", french: "croire" },
-                { english: "to ask", french: "demander" },
-                { english: "to understand", french: "comprendre" },
-                { english: "to give back", french: "rendre" },
-                { english: "to hold", french: "tenir" },
-                { english: "to hear", french: "entendre" },
-                { english: "to answer", french: "répondre" },
-                { english: "to wait", french: "attendre" },
-                { english: "to go out", french: "sortir" },
-                { english: "to live", french: "vivre" }
-            ],
-            4: [
-                { english: "to watch", french: "regarder" },
-                { english: "to look for", french: "chercher" },
-                { english: "to play", french: "jouer" },
-                { english: "to work", french: "travailler" },
-                { english: "to use", french: "utiliser" },
-                { english: "to try", french: "essayer" },
-                { english: "to walk", french: "marcher" },
-                { english: "to know (people)", french: "connaître" },
-                { english: "to eat", french: "manger" },
-                { english: "to drink", french: "boire" }
-            ],
-            5: [
-                { english: "to buy", french: "acheter" },
-                { english: "to open", french: "ouvrir" },
-                { english: "to close", french: "fermer" },
-                { english: "to read", french: "lire" },
-                { english: "to write", french: "écrire" },
-                { english: "to send", french: "envoyer" },
-                { english: "to receive", french: "recevoir" },
-                { english: "to fall", french: "tomber" },
-                { english: "to stay", french: "rester" },
-                { english: "to go up", french: "monter" }
-            ],
-            6: [
-                { english: "to go down", french: "descendre" },
-                { english: "to carry/wear", french: "porter" },
-                { english: "to be born", french: "naître" },
-                { english: "to die", french: "mourir" },
-                { english: "to change", french: "changer" },
-                { english: "to lose", french: "perdre" },
-                { english: "to count", french: "compter" },
-                { english: "to listen", french: "écouter" },
-                { english: "to cook", french: "cuisiner" },
-                { english: "to clean", french: "nettoyer" }
-            ],
-            7: [
-                { english: "to return", french: "rentrer" },
-                { english: "to leave", french: "partir" },
-                { english: "to get up", french: "se lever" },
-                { english: "to go to bed", french: "se coucher" },
-                { english: "to wash", french: "se laver" },
-                { english: "to remember", french: "se souvenir" },
-                { english: "to hurry", french: "se dépêcher" },
-                { english: "to take a walk", french: "se promener" },
-                { english: "to feel", french: "se sentir" },
-                { english: "to sit down", french: "s'asseoir" }
-            ],
-            8: [
-                { english: "to get dressed", french: "s'habiller" },
-                { english: "to have fun", french: "s'amuser" },
-                { english: "to start", french: "commencer" },
-                { english: "to finish", french: "finir" },
-                { english: "to continue", french: "continuer" },
-                { english: "to learn", french: "apprendre" },
-                { english: "to teach", french: "enseigner" },
-                { english: "to think", french: "réfléchir" },
-                { english: "to choose", french: "choisir" },
-                { english: "to fill", french: "remplir" }
-            ],
-            9: [
-                { english: "to grow up", french: "grandir" },
-                { english: "to gain weight", french: "grossir" },
-                { english: "to lose weight", french: "maigrir" },
-                { english: "to obey", french: "obéir" },
-                { english: "to punish", french: "punir" },
-                { english: "to succeed", french: "réussir" },
-                { english: "to tie", french: "attacher" },
-                { english: "to hate", french: "détester" },
-                { english: "to adore", french: "adorer" },
-                { english: "to prefer", french: "préférer" }
-            ],
-            10: [
-                { english: "to hope", french: "espérer" },
-                { english: "to fear", french: "craindre" },
-                { english: "to protect", french: "protéger" },
-                { english: "to appear", french: "apparaître" },
-                { english: "to disappear", french: "disparaître" },
-                { english: "to lie", french: "mentir" },
-                { english: "to steal/fly", french: "voler" },
-                { english: "to sleep", french: "dormir" },
-                { english: "to wake up", french: "se réveiller" },
-                { english: "to lower", french: "baisser" }
-            ],
-            11: [
-                { english: "to increase", french: "augmenter" },
-                { english: "to suffer", french: "souffrir" },
-                { english: "to hide", french: "cacher" },
-                { english: "to show", french: "montrer" },
-                { english: "to pay", french: "payer" },
-                { english: "to place", french: "placer" },
-                { english: "to take (someone)", french: "emmener" },
-                { english: "to bring (someone)", french: "amener" },
-                { english: "to take (something)", french: "emporter" },
-                { english: "to bring back", french: "ramener" }
-            ],
-            12: [
-                { english: "to explain", french: "expliquer" },
-                { english: "to grant", french: "accorder" },
-                { english: "to repair", french: "réparer" },
-                { english: "to break", french: "briser" },
-                { english: "to catch", french: "attraper" },
-                { english: "to dream", french: "rêver" },
-                { english: "to jump", french: "sauter" },
-                { english: "to slip", french: "glisser" },
-                { english: "to cry", french: "pleurer" },
-                { english: "to laugh", french: "rire" }
-            ],
-            13: [
-                { english: "to smile", french: "sourire" },
-                { english: "to leave (a place)", french: "quitter" },
-                { english: "to exist", french: "exister" },
-                { english: "to miss/lack", french: "manquer" },
-                { english: "to touch", french: "toucher" },
-                { english: "to beat", french: "battre" },
-                { english: "to cover", french: "couvrir" },
-                { english: "to discover", french: "découvrir" },
-                { english: "to obtain", french: "obtenir" },
-                { english: "to add", french: "ajouter" }
-            ],
-            14: [
-                { english: "to delete", french: "supprimer" },
-                { english: "to call", french: "téléphoner" },
-                { english: "to discuss", french: "discuter" },
-                { english: "to invite", french: "inviter" },
-                { english: "to organize", french: "organiser" },
-                { english: "to accept", french: "accepter" },
-                { english: "to refuse", french: "refuser" },
-                { english: "to keep", french: "garder" },
-                { english: "to help", french: "aider" },
-                { english: "to avoid", french: "éviter" }
-            ],
-            15: [
-                { english: "to drive", french: "conduire" },
-                { english: "to notice", french: "remarquer" },
-                { english: "to attempt", french: "tenter" },
-                { english: "to hit", french: "frapper" },
-                { english: "to tolerate", french: "supporter" },
-                { english: "to print", french: "imprimer" },
-                { english: "to display", french: "afficher" },
-                { english: "to plan", french: "planifier" },
-                { english: "to deliver", french: "livrer" },
-                { english: "to prepare", french: "préparer" }
-            ],
-            16: [
-                { english: "to cancel", french: "annuler" },
-                { english: "to validate", french: "valider" },
-                { english: "to check", french: "vérifier" },
-                { english: "to feel (emotion)", french: "ressentir" },
-                { english: "to describe", french: "décrire" },
-                { english: "to correct", french: "corriger" },
-                { english: "to review", french: "réviser" },
-                { english: "to repeat", french: "répéter" },
-                { english: "to translate", french: "traduire" },
-                { english: "to interrupt", french: "interrompre" }
-            ],
-            17: [
-                { english: "to enjoy", french: "jouir" },
-                { english: "to act", french: "agir" },
-                { english: "to link", french: "lier" },
-                { english: "to win", french: "gagner" },
-                { english: "to allow", french: "permettre" },
-                { english: "to forbid", french: "interdire" },
-                { english: "to fight", french: "se battre" },
-                { english: "to doubt", french: "douter" },
-                { english: "to guess", french: "deviner" },
-                { english: "to wipe", french: "essuyer" }
-            ],
-            18: [
-                { english: "to climb", french: "grimper" },
-                { english: "to swim", french: "nager" },
-                { english: "to throw", french: "lancer" },
-                { english: "to applaud", french: "applaudir" },
-                { english: "to thank", french: "remercier" },
-                { english: "to build", french: "construire" },
-                { english: "to destroy", french: "détruire" },
-                { english: "to replace", french: "remplacer" },
-                { english: "to separate", french: "séparer" },
-                { english: "to wish", french: "souhaiter" }
-            ],
-            19: [
-                { english: "to sign", french: "signer" },
-                { english: "to save", french: "sauver" },
-                { english: "to reserve", french: "réserver" },
-                { english: "to please", french: "plaire" },
-                { english: "to hold", french: "tenir" },
-                { english: "to melt", french: "fondre" },
-                { english: "to sweep", french: "balayer" },
-                { english: "to pray", french: "prier" },
-                { english: "to scream", french: "hurler" },
-                { english: "to welcome", french: "accueillir" }
-            ],
-            20: [
-                { english: "to shake", french: "trembler" },
-                { english: "to sing", french: "chanter" },
-                { english: "to dance", french: "danser" },
-                { english: "to paint", french: "peindre" },
-                { english: "to draw", french: "dessiner" },
-                { english: "to photograph", french: "photographier" },
-                { english: "to travel", french: "voyager" },
-                { english: "to visit", french: "visiter" },
-                { english: "to study", french: "étudier" },
-                { english: "to work (hard)", french: "travailler dur" }
-            ]
-        };
-
-        // Game state
-        let currentSet = 1;
-        let currentQuestionIndex = 0;
-        let shuffledVerbs = [];
-        let mistakes = [];
-        let currentScore = 0;
-        let isRetryMode = false;
-        let initialMistakesCount = 0;
+    <!-- Results Page -->
+    <div id="results-page" class="hidden">
+      <div class="card">
+        <button class="btn btn-outline btn-sm mb-4" onclick="returnToMenu()">
+          ← Back to Menu
+        </button>
         
-        // Test state
-        let testVerbs = [];
-        let testCurrentQuestionIndex = 0;
-        let testMistakes = [];
-        let testScore = 0;
-
-        // DOM elements
-        const mainMenu = document.getElementById('main-menu');
-        const practicePage = document.getElementById('practice-page');
-        const resultsPage = document.getElementById('results-page');
-        const testPage = document.getElementById('test-page');
-        const testResultsPage = document.getElementById('test-results-page');
+        <h2 class="card-title">Practice Results</h2>
         
-        const questionText = document.getElementById('question-text');
-        const userAnswer = document.getElementById('user-answer');
-        const feedback = document.getElementById('feedback');
-        const correctAnswerDisplay = document.getElementById('correct-answer');
-        const continueBtn = document.getElementById('continue-btn');
-        const retryBtn = document.getElementById('retry-btn');
-        const newSetBtn = document.getElementById('new-set-btn');
-        const progressText = document.getElementById('progress-text');
-        const progressBar = document.getElementById('progress-bar');
-        const resultsSummary = document.getElementById('results-summary');
-        const resultsScore = document.getElementById('results-score');
-        const resultsMessage = document.getElementById('results-message');
-        const mistakesList = document.getElementById('mistakes-list');
-        const mistakesContainer = document.getElementById('mistakes-container');
-        const hintText = document.getElementById('hint-text');
+        <div id="results-summary" class="text-center">
+          <div id="results-score" class="results-score"></div>
+          <p id="results-message"></p>
+        </div>
         
-        // Test elements
-        const testQuestionText = document.getElementById('test-question-text');
-        const testUserAnswer = document.getElementById('test-user-answer');
-        const testProgressText = document.getElementById('test-progress-text');
-        const testProgressBar = document.getElementById('test-progress-bar');
-        const testResultsScore = document.getElementById('test-results-score');
-        const testResultsMessage = document.getElementById('test-results-message');
-        const testInstructions = document.getElementById('test-instructions');
-        const testSubmittedFeedback = document.getElementById('test-submitted-feedback');
-        const testMistakesList = document.getElementById('test-mistakes-list');
-        const testMistakesContainer = document.getElementById('test-mistakes-container');
-        const newTestBtn = document.getElementById('new-test-btn');
+        <div id="mistakes-container" class="mt-4">
+          <h3 class="text-center mb-3">Your Mistakes</h3>
+          <div id="mistakes-list" class="mistakes-list"></div>
+        </div>
         
-        // Audio elements
-        const correctSound = document.getElementById('correctSound');
-        const wrongSound = document.getElementById('wrongSound');
-        const celebrationSound = document.getElementById('celebrationSound');
+        <div class="btn-group mt-4">
+          <button id="retry-btn" class="btn btn-warning" onclick="retryMistakes()">Retry Mistakes</button>
+          <button id="new-set-btn" class="btn btn-primary" onclick="returnToMenu()">New Practice Set</button>
+        </div>
+      </div>
+    </div>
 
-        // Start practice with selected set
-        function startPractice(setNumber) {
-            currentSet = setNumber;
-            currentQuestionIndex = 0;
-            currentScore = 0;
-            mistakes = [];
-            isRetryMode = false;
-            initialMistakesCount = 0;
-            
-            // Shuffle the verbs for random order
-            shuffledVerbs = [...verbSets[setNumber]].sort(() => Math.random() - 0.5);
-            
-            mainMenu.classList.add('hidden');
-            resultsPage.classList.add('hidden');
-            testPage.classList.add('hidden');
-            testResultsPage.classList.add('hidden');
-            practicePage.classList.remove('hidden');
-            showQuestion();
-        }
+    <!-- Test Page -->
+    <div id="test-page" class="hidden">
+      <div class="card">
+        <button class="btn btn-outline btn-sm mb-4" onclick="returnToMenu()">
+          ← Back to Menu
+        </button>
+        
+        <h2 class="card-title">Master Challenge</h2>
+        
+        <div class="test-instructions" id="test-instructions">
+          <strong>Challenge Rules:</strong> No hints, no answer reveals. 
+          Complete all verbs to see your score and mistakes.
+        </div>
+        
+        <div class="progress">
+          <div id="test-progress-text">Verb 1 of 5</div>
+          <div class="progress-bar">
+            <div class="progress-bar-fill" id="test-progress-bar" style="width: 20%"></div>
+          </div>
+        </div>
+        
+        <div class="question-container">
+          <div class="question-text" id="test-question-text"></div>
+          
+          <input type="text" class="form-control verb-input" id="test-user-answer" placeholder="Type the French verb..." autocomplete="off">
+          
+          <button class="btn btn-primary btn-block" onclick="checkTestAnswer()">Submit Answer</button>
+          
+          <div id="test-submitted-feedback" class="feedback hidden">
+            Answer submitted! Moving to next verb...
+          </div>
+        </div>
+      </div>
+    </div>
 
-        // Show current question
-        function showQuestion() {
-            const verb = shuffledVerbs[currentQuestionIndex];
-            
-            questionText.textContent = verb.english;
-            userAnswer.value = '';
-            
-            // Clear feedback and hint
-            feedback.textContent = '';
-            feedback.className = 'feedback';
-            correctAnswerDisplay.textContent = '';
-            hintText.textContent = '';
-            hintText.style.display = 'none';
-            continueBtn.classList.add('hidden');
-            
-            // Update progress
-            const progressPercent = ((currentQuestionIndex + 1) / shuffledVerbs.length) * 100;
-            progressText.textContent = `Verb ${currentQuestionIndex + 1} of ${shuffledVerbs.length}`;
-            progressBar.style.width = `${progressPercent}%`;
-            
-            // Focus and open keyboard
-            setTimeout(() => {
-                userAnswer.focus();
-            }, 100);
-        }
+    <!-- Test Results Page -->
+    <div id="test-results-page" class="hidden">
+      <div class="card">
+        <button class="btn btn-outline btn-sm mb-4" onclick="returnToMenu()">
+          ← Back to Menu
+        </button>
+        
+        <h2 class="card-title">Challenge Results</h2>
+        
+        <div class="text-center">
+          <div id="test-results-score" class="results-score"></div>
+          <p id="test-results-message" class="mb-4"></p>
+        </div>
+        
+        <div id="test-mistakes-container" class="mt-4">
+          <h3 class="text-center mb-3">Your Mistakes</h3>
+          <div id="test-mistakes-list" class="mistakes-list"></div>
+        </div>
+        
+        <button id="new-test-btn" class="btn btn-danger btn-block mt-4" onclick="returnToMenu()">
+          Back to Menu
+        </button>
+      </div>
+    </div>
 
-        // Show hint for current verb
-        function showHint() {
-            const verb = shuffledVerbs[currentQuestionIndex];
-            let hint = '';
-            
-            // Create hint based on verb characteristics
-            if (verb.french.endsWith('er')) {
-                hint = `Ends with "er"`;
-            } else if (verb.french.endsWith('ir')) {
-                hint = `Ends with "ir"`;
-            } else if (verb.french.endsWith('re')) {
-                hint = `Ends with "re"`;
-            } else if (verb.french.endsWith('oir')) {
-                hint = `Ends with "oir"`;
-            }
-            
-            // Add first letter if the word is long
-            if (verb.french.length > 5) {
-                hint = `Starts with "${verb.french[0].toUpperCase()}" and ${hint.toLowerCase()}`;
-            }
-            
-            hintText.textContent = `Hint: ${hint}`;
-            hintText.style.display = 'block';
-        }
+    <!-- Articles Page -->
+    <div id="articles-page" class="hidden">
+      <div class="coming-soon">
+        <div class="animation-container">
+          <div class="animated-circle circle-1"></div>
+          <div class="animated-circle circle-2"></div>
+          <div class="animated-circle circle-3"></div>
+          <div class="animated-circle circle-4"></div>
+        </div>
+        <h1>Articles</h1>
+        <p>Our comprehensive guide to French articles is coming soon! Learn how to use definite, indefinite, and partitive articles correctly in French sentences.</p>
+        <a href="#" class="btn btn-primary" id="back-to-verbs-from-articles">Back to Verbs</a>
+      </div>
+    </div>
 
-        // Check answer
-        function checkAnswer() {
-            const verb = shuffledVerbs[currentQuestionIndex];
-            const answer = userAnswer.value.trim().toLowerCase();
-            
-            if (answer === verb.french) {
-                feedback.textContent = "Correct! Well done!";
-                feedback.className = "feedback correct";
-                currentScore++;
-                // Play correct sound
-                correctSound.currentTime = 0;
-                correctSound.play();
-                
-                // Keep keyboard open by focusing on the next question
-                setTimeout(() => {
-                    nextQuestion();
-                    userAnswer.focus();
-                }, 1500);
-            } else {
-                feedback.textContent = "Incorrect. Try again!";
-                feedback.className = "feedback incorrect";
-                correctAnswerDisplay.textContent = "Correct answer: " + verb.french;
-                continueBtn.classList.remove('hidden');
-                
-                // Play wrong sound
-                wrongSound.currentTime = 0;
-                wrongSound.play();
-                
-                // Record mistake
-                mistakes.push({
-                    english: verb.english,
-                    french: verb.french,
-                    userAnswer: answer
-                });
-                
-                // Set initial mistakes count on first mistake in regular mode
-                if (!isRetryMode && initialMistakesCount === 0) {
-                    initialMistakesCount = 1; // At least one mistake now
-                }
-            }
-        }
+    <!-- Prepositions Page -->
+    <div id="prepositions-page" class="hidden">
+      <div class="coming-soon">
+        <div class="animation-container">
+          <div class="animated-circle circle-1" style="background-color: var(--red);"></div>
+          <div class="animated-circle circle-2" style="background-color: var(--orange);"></div>
+          <div class="animated-circle circle-3" style="background-color: var(--purple);"></div>
+          <div class="animated-circle circle-4" style="background-color: var(--teal);"></div>
+        </div>
+        <h1>Prepositions</h1>
+        <p>Master French prepositions with our upcoming interactive lessons. Learn how to use à, de, dans, sur, and other essential prepositions.</p>
+        <a href="#" class="btn btn-primary" id="back-to-verbs-from-prepositions">Back to Verbs</a>
+      </div>
+    </div>
 
-        // Show answer
-        function showAnswer() {
-            const verb = shuffledVerbs[currentQuestionIndex];
-            
-            userAnswer.value = verb.french;
-            feedback.textContent = "Here's the correct answer:";
-            feedback.className = "feedback correct";
-            correctAnswerDisplay.textContent = verb.french;
-            continueBtn.classList.remove('hidden');
-            
-            // Play wrong sound since they needed to see the answer
-            wrongSound.currentTime = 0;
-            wrongSound.play();
-            
-            // Record as mistake if not already
-            if (!mistakes.some(m => m.english === verb.english)) {
-                mistakes.push({
-                    english: verb.english,
-                    french: verb.french,
-                    userAnswer: ""
-                });
-                
-                // Set initial mistakes count on first mistake in regular mode
-                if (!isRetryMode && initialMistakesCount === 0) {
-                    initialMistakesCount = 1; // At least one mistake now
-                }
-            }
-        }
+    <!-- Tense Page -->
+    <div id="tense-page" class="hidden">
+      <div class="coming-soon">
+        <div class="animation-container">
+          <div class="animated-circle circle-1" style="background-color: var(--teal);"></div>
+          <div class="animated-circle circle-2" style="background-color: var(--blue);"></div>
+          <div class="animated-circle circle-3" style="background-color: var(--purple);"></div>
+          <div class="animated-circle circle-4" style="background-color: var(--primary);"></div>
+        </div>
+        <h1>Tenses</h1>
+        <p>Our French tenses guide is under development! Soon you'll be able to practice present, past, future, and conditional tenses with interactive exercises.</p>
+        <a href="#" class="btn btn-primary" id="back-to-verbs-from-tense">Back to Verbs</a>
+      </div>
+    </div>
 
-        // Next question
-        function nextQuestion() {
-            currentQuestionIndex++;
-            
-            if (currentQuestionIndex >= shuffledVerbs.length) {
-                showResults();
-            } else {
-                showQuestion();
-                // Keep keyboard open by focusing on the input
-                setTimeout(() => {
-                    userAnswer.focus();
-                }, 100);
-            }
-        }
+    <!-- Blogs Page -->
+    <div id="blogs-page" class="hidden">
+      <div class="coming-soon">
+        <div class="animation-container">
+          <div class="animated-circle circle-1" style="background-color: var(--orange);"></div>
+          <div class="animated-circle circle-2" style="background-color: var(--red);"></div>
+          <div class="animated-circle circle-3" style="background-color: var(--teal);"></div>
+          <div class="animated-circle circle-4" style="background-color: var(--purple);"></div>
+        </div>
+        <h1>Blogs</h1>
+        <p>Our French learning blog is coming soon! Get tips, cultural insights, and language learning strategies from our expert instructors.</p>
+        <a href="#" class="btn btn-primary" id="back-to-verbs-from-blogs">Back to Verbs</a>
+      </div>
+    </div>
 
-        // Show results after completing set
-        function showResults() {
-            practicePage.classList.add('hidden');
-            resultsPage.classList.remove('hidden');
-            
-            // Calculate score percentage
-            const scorePercentage = Math.round((currentScore / shuffledVerbs.length) * 100);
-            
-            // Display score
-            resultsScore.textContent = `${currentScore}/${shuffledVerbs.length} (${scorePercentage}%)`;
-            
-            // Display appropriate message
-            if (isRetryMode) {
-                if (mistakes.length === 0) {
-                    resultsMessage.innerHTML = `
-                        <div class="perfect-score">Perfect! You corrected all your mistakes!</div>
-                        <p class="mt-3">You've mastered this set!</p>
-                    `;
-                    mistakesContainer.innerHTML = '';
-                    retryBtn.classList.add('hidden');
-                    createConfetti();
-                    celebrationSound.play();
-                } else {
-                    resultsMessage.innerHTML = `
-                        <p>You completed <strong>Mistakes Review</strong></p>
-                        <p>You corrected ${initialMistakesCount - mistakes.length} of ${initialMistakesCount} mistakes</p>
-                    `;
-                    retryBtn.classList.remove('hidden');
-                }
-            } else {
-                if (scorePercentage === 100) {
-                    resultsMessage.innerHTML = `
-                        <div class="perfect-score">Perfect Score! Excellent work!</div>
-                    `;
-                    createConfetti();
-                    celebrationSound.play();
-                } else if (scorePercentage >= 80) {
-                    resultsMessage.innerHTML = `
-                        <div class="perfect-score">Great Job! Almost perfect!</div>
-                        <p class="mt-3">You're doing really well with these verbs!</p>
-                    `;
-                } else if (scorePercentage >= 60) {
-                    resultsMessage.innerHTML = `
-                        <p>Good effort! You're making progress!</p>
-                        <p class="mt-3">Keep practicing to improve your score.</p>
-                    `;
-                } else {
-                    resultsMessage.innerHTML = `
-                        <p>Practice makes perfect!</p>
-                        <p class="mt-3">Review your mistakes and try again to improve.</p>
-                    `;
-                }
-                
-                if (mistakes.length === 0) {
-                    mistakesContainer.innerHTML = `
-                        <h3 class="text-center perfect-score">Perfect! No mistakes!</h3>
-                    `;
-                    retryBtn.classList.add('hidden');
-                } else {
-                    initialMistakesCount = mistakes.length;
-                    retryBtn.classList.remove('hidden');
-                }
-            }
-            
-            // Display mistakes if any
-            if (mistakes.length > 0) {
-                mistakesList.innerHTML = mistakes.map(mistake => `
-                    <div class="mistake-item">
-                        <strong>${mistake.english}</strong><br>
-                        <span class="user-answer">Your answer: ${mistake.userAnswer || "(skipped)"}</span><br>
-                        <span class="correct-answer">Correct answer: ${mistake.french}</span>
-                    </div>
-                `).join('');
-            }
-            
-            newSetBtn.classList.remove('hidden');
-        }
+    <!-- Contact Page -->
+    <div id="contact-page" class="hidden">
+      <div class="contact-page">
+        <h1>Contact Us</h1>
+        <div class="contact-form">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" placeholder="Enter your name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="Enter your email">
+          </div>
+          <div class="form-group">
+            <label for="message">Your Message</label>
+            <textarea id="message" placeholder="How can we help you?"></textarea>
+          </div>
+          <button class="submit-btn" id="submit-contact">Send Message</button>
+          <div class="success-message" id="success-message">
+            Thank you for your message! We'll get back to you soon.
+          </div>
+        </div>
+        <div class="contact-info">
+          <p>Or reach us directly at:</p>
+          <p><a href="mailto:frenchitute@gmail.com" class="email-link">frenchitute@gmail.com</a></p>
+        </div>
+        <a href="#" class="btn btn-outline mt-4" id="back-to-verbs-from-contact">Back to Verbs</a>
+      </div>
+    </div>
+  </div>
 
-        // Create celebration confetti
-        function createConfetti() {
-            const colors = ['#4361ee', '#3f37c9', '#4895ef', '#4cc9f0', '#f72585'];
-            
-            for (let i = 0; i < 100; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.width = Math.random() * 10 + 5 + 'px';
-                confetti.style.height = Math.random() * 10 + 5 + 'px';
-                confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
-                document.body.appendChild(confetti);
-                
-                // Remove confetti after animation
-                setTimeout(() => {
-                    confetti.remove();
-                }, 5000);
-            }
-        }
+  <!-- Audio elements for sound effects -->
+  <audio id="correctSound" src="https://assets.mixkit.co/sfx/preview/mixkit-correct-answer-tone-2870.mp3" preload="auto"></audio>
+  <audio id="wrongSound" src="https://assets.mixkit.co/sfx/preview/mixkit-wrong-answer-fail-notification-946.mp3" preload="auto"></audio>
+  <audio id="celebrationSound" src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3" preload="auto"></audio>
 
-        // Retry mistakes
-        function retryMistakes() {
-            if (mistakes.length === 0) return;
-            
-            // Create a new set with just the mistakes
-            shuffledVerbs = mistakes.map(mistake => ({
-                english: mistake.english,
-                french: mistake.french
-            }));
-            
-            currentQuestionIndex = 0;
-            currentScore = 0;
-            initialMistakesCount = mistakes.length;
-            mistakes = [];
-            isRetryMode = true;
-            
-            resultsPage.classList.add('hidden');
-            practicePage.classList.remove('hidden');
-            showQuestion();
-        }
+  <script>
+    // Twenty sets of 10 French verbs each with English translations
+    const verbSets = {
+      1: [
+        { english: "to be", french: "être" },
+        { english: "to have", french: "avoir" },
+        { english: "to go", french: "aller" },
+        { english: "to do/make", french: "faire" },
+        { english: "to say/tell", french: "dire" },
+        { english: "to be able to", french: "pouvoir" },
+        { english: "to want", french: "vouloir" },
+        { english: "to see", french: "voir" },
+        { english: "to know (facts)", french: "savoir" },
+        { english: "to come", french: "venir" }
+      ],
+      2: [
+        { english: "to have to", french: "devoir" },
+        { english: "to take", french: "prendre" },
+        { english: "to put", french: "mettre" },
+        { english: "to give", french: "donner" },
+        { english: "to speak", french: "parler" },
+        { english: "to like/love", french: "aimer" },
+        { english: "to pass/spend time", french: "passer" },
+        { english: "to find", french: "trouver" },
+        { english: "to leave (something)", french: "laisser" },
+        { english: "to arrive", french: "arriver" }
+      ],
+      3: [
+        { english: "to believe", french: "croire" },
+        { english: "to ask", french: "demander" },
+        { english: "to understand", french: "comprendre" },
+        { english: "to give back", french: "rendre" },
+        { english: "to hold", french: "tenir" },
+        { english: "to hear", french: "entendre" },
+        { english: "to answer", french: "répondre" },
+        { english: "to wait", french: "attendre" },
+        { english: "to go out", french: "sortir" },
+        { english: "to live", french: "vivre" }
+      ],
+      4: [
+        { english: "to watch", french: "regarder" },
+        { english: "to look for", french: "chercher" },
+        { english: "to play", french: "jouer" },
+        { english: "to work", french: "travailler" },
+        { english: "to use", french: "utiliser" },
+        { english: "to try", french: "essayer" },
+        { english: "to walk", french: "marcher" },
+        { english: "to know (people)", french: "connaître" },
+        { english: "to eat", french: "manger" },
+        { english: "to drink", french: "boire" }
+      ],
+      5: [
+        { english: "to buy", french: "acheter" },
+        { english: "to open", french: "ouvrir" },
+        { english: "to close", french: "fermer" },
+        { english: "to read", french: "lire" },
+        { english: "to write", french: "écrire" },
+        { english: "to send", french: "envoyer" },
+        { english: "to receive", french: "recevoir" },
+        { english: "to fall", french: "tomber" },
+        { english: "to stay", french: "rester" },
+        { english: "to go up", french: "monter" }
+      ],
+      6: [
+        { english: "to go down", french: "descendre" },
+        { english: "to carry/wear", french: "porter" },
+        { english: "to be born", french: "naître" },
+        { english: "to die", french: "mourir" },
+        { english: "to change", french: "changer" },
+        { english: "to lose", french: "perdre" },
+        { english: "to count", french: "compter" },
+        { english: "to listen", french: "écouter" },
+        { english: "to cook", french: "cuisiner" },
+        { english: "to clean", french: "nettoyer" }
+      ],
+      7: [
+        { english: "to return", french: "rentrer" },
+        { english: "to leave", french: "partir" },
+        { english: "to get up", french: "se lever" },
+        { english: "to go to bed", french: "se coucher" },
+        { english: "to wash", french: "se laver" },
+        { english: "to remember", french: "se souvenir" },
+        { english: "to hurry", french: "se dépêcher" },
+        { english: "to take a walk", french: "se promener" },
+        { english: "to feel", french: "se sentir" },
+        { english: "to sit down", french: "s'asseoir" }
+      ],
+      8: [
+        { english: "to get dressed", french: "s'habiller" },
+        { english: "to have fun", french: "s'amuser" },
+        { english: "to start", french: "commencer" },
+        { english: "to finish", french: "finir" },
+        { english: "to continue", french: "continuer" },
+        { english: "to learn", french: "apprendre" },
+        { english: "to teach", french: "enseigner" },
+        { english: "to think", french: "réfléchir" },
+        { english: "to choose", french: "choisir" },
+        { english: "to fill", french: "remplir" }
+      ],
+      9: [
+        { english: "to grow up", french: "grandir" },
+        { english: "to gain weight", french: "grossir" },
+        { english: "to lose weight", french: "maigrir" },
+        { english: "to obey", french: "obéir" },
+        { english: "to punish", french: "punir" },
+        { english: "to succeed", french: "réussir" },
+        { english: "to tie", french: "attacher" },
+        { english: "to hate", french: "détester" },
+        { english: "to adore", french: "adorer" },
+        { english: "to prefer", french: "préférer" }
+      ],
+      10: [
+        { english: "to hope", french: "espérer" },
+        { english: "to fear", french: "craindre" },
+        { english: "to protect", french: "protéger" },
+        { english: "to appear", french: "apparaître" },
+        { english: "to disappear", french: "disparaître" },
+        { english: "to lie", french: "mentir" },
+        { english: "to steal/fly", french: "voler" },
+        { english: "to sleep", french: "dormir" },
+        { english: "to wake up", french: "se réveiller" },
+        { english: "to lower", french: "baisser" }
+      ],
+      11: [
+        { english: "to increase", french: "augmenter" },
+        { english: "to suffer", french: "souffrir" },
+        { english: "to hide", french: "cacher" },
+        { english: "to show", french: "montrer" },
+        { english: "to pay", french: "payer" },
+        { english: "to place", french: "placer" },
+        { english: "to take (someone)", french: "emmener" },
+        { english: "to bring (someone)", french: "amener" },
+        { english: "to take (something)", french: "emporter" },
+        { english: "to bring back", french: "ramener" }
+      ],
+      12: [
+        { english: "to explain", french: "expliquer" },
+        { english: "to grant", french: "accorder" },
+        { english: "to repair", french: "réparer" },
+        { english: "to break", french: "briser" },
+        { english: "to catch", french: "attraper" },
+        { english: "to dream", french: "rêver" },
+        { english: "to jump", french: "sauter" },
+        { english: "to slip", french: "glisser" },
+        { english: "to cry", french: "pleurer" },
+        { english: "to laugh", french: "rire" }
+      ],
+      13: [
+        { english: "to smile", french: "sourire" },
+        { english: "to leave (a place)", french: "quitter" },
+        { english: "to exist", french: "exister" },
+        { english: "to miss/lack", french: "manquer" },
+        { english: "to touch", french: "toucher" },
+        { english: "to beat", french: "battre" },
+        { english: "to cover", french: "couvrir" },
+        { english: "to discover", french: "découvrir" },
+        { english: "to obtain", french: "obtenir" },
+        { english: "to add", french: "ajouter" }
+      ],
+      14: [
+        { english: "to delete", french: "supprimer" },
+        { english: "to call", french: "téléphoner" },
+        { english: "to discuss", french: "discuter" },
+        { english: "to invite", french: "inviter" },
+        { english: "to organize", french: "organiser" },
+        { english: "to accept", french: "accepter" },
+        { english: "to refuse", french: "refuser" },
+        { english: "to keep", french: "garder" },
+        { english: "to help", french: "aider" },
+        { english: "to avoid", french: "éviter" }
+      ],
+      15: [
+        { english: "to drive", french: "conduire" },
+        { english: "to notice", french: "remarquer" },
+        { english: "to attempt", french: "tenter" },
+        { english: "to hit", french: "frapper" },
+        { english: "to tolerate", french: "supporter" },
+        { english: "to print", french: "imprimer" },
+        { english: "to display", french: "afficher" },
+        { english: "to plan", french: "planifier" },
+        { english: "to deliver", french: "livrer" },
+        { english: "to prepare", french: "préparer" }
+      ],
+      16: [
+        { english: "to cancel", french: "annuler" },
+        { english: "to validate", french: "valider" },
+        { english: "to check", french: "vérifier" },
+        { english: "to feel (emotion)", french: "ressentir" },
+        { english: "to describe", french: "décrire" },
+        { english: "to correct", french: "corriger" },
+        { english: "to review", french: "réviser" },
+        { english: "to repeat", french: "répéter" },
+        { english: "to translate", french: "traduire" },
+        { english: "to interrupt", french: "interrompre" }
+      ],
+      17: [
+        { english: "to enjoy", french: "jouir" },
+        { english: "to act", french: "agir" },
+        { english: "to link", french: "lier" },
+        { english: "to win", french: "gagner" },
+        { english: "to allow", french: "permettre" },
+        { english: "to forbid", french: "interdire" },
+        { english: "to fight", french: "se battre" },
+        { english: "to doubt", french: "douter" },
+        { english: "to guess", french: "deviner" },
+        { english: "to wipe", french: "essuyer" }
+      ],
+      18: [
+        { english: "to climb", french: "grimper" },
+        { english: "to swim", french: "nager" },
+        { english: "to throw", french: "lancer" },
+        { english: "to applaud", french: "applaudir" },
+        { english: "to thank", french: "remercier" },
+        { english: "to build", french: "construire" },
+        { english: "to destroy", french: "détruire" },
+        { english: "to replace", french: "remplacer" },
+        { english: "to separate", french: "séparer" },
+        { english: "to wish", french: "souhaiter" }
+      ],
+      19: [
+        { english: "to sign", french: "signer" },
+        { english: "to save", french: "sauver" },
+        { english: "to reserve", french: "réserver" },
+        { english: "to please", french: "plaire" },
+        { english: "to hold", french: "tenir" },
+        { english: "to melt", french: "fondre" },
+        { english: "to sweep", french: "balayer" },
+        { english: "to pray", french: "prier" },
+        { english: "to scream", french: "hurler" },
+        { english: "to welcome", french: "accueillir" }
+      ],
+      20: [
+        { english: "to shake", french: "trembler" },
+        { english: "to sing", french: "chanter" },
+        { english: "to dance", french: "danser" },
+        { english: "to paint", french: "peindre" },
+        { english: "to draw", french: "dessiner" },
+        { english: "to photograph", french: "photographier" },
+        { english: "to travel", french: "voyager" },
+        { english: "to visit", french: "visiter" },
+        { english: "to study", french: "étudier" },
+        { english: "to work (hard)", french: "travailler dur" }
+      ]
+    };
 
-        // Return to menu
-        function returnToMenu() {
-            mainMenu.classList.remove('hidden');
-            practicePage.classList.add('hidden');
-            resultsPage.classList.add('hidden');
-            testPage.classList.add('hidden');
-            testResultsPage.classList.add('hidden');
-        }
+    // Game state
+    let currentSet = 1;
+    let currentQuestionIndex = 0;
+    let shuffledVerbs = [];
+    let mistakes = [];
+    let currentScore = 0;
+    let isRetryMode = false;
+    let initialMistakesCount = 0;
+    
+    // Test state
+    let testVerbs = [];
+    let testCurrentQuestionIndex = 0;
+    let testMistakes = [];
+    let testScore = 0;
 
-        // Start master test
-        function startMasterTest() {
-            // Combine all verbs from all sets and select 100 random ones
-            testVerbs = Object.values(verbSets).flat().sort(() => Math.random() - 0.5).slice(0, 100);
-            
-            testCurrentQuestionIndex = 0;
-            testScore = 0;
-            testMistakes = [];
-            
-            mainMenu.classList.add('hidden');
-            practicePage.classList.add('hidden');
-            resultsPage.classList.add('hidden');
-            testResultsPage.classList.add('hidden');
-            testPage.classList.remove('hidden');
-            
-            showTestQuestion();
-        }
+    // DOM elements
+    const mainMenu = document.getElementById('main-menu');
+    const practicePage = document.getElementById('practice-page');
+    const resultsPage = document.getElementById('results-page');
+    const testPage = document.getElementById('test-page');
+    const testResultsPage = document.getElementById('test-results-page');
+    
+    const questionText = document.getElementById('question-text');
+    const userAnswer = document.getElementById('user-answer');
+    const feedback = document.getElementById('feedback');
+    const correctAnswerDisplay = document.getElementById('correct-answer');
+    const continueBtn = document.getElementById('continue-btn');
+    const retryBtn = document.getElementById('retry-btn');
+    const newSetBtn = document.getElementById('new-set-btn');
+    const progressText = document.getElementById('progress-text');
+    const progressBar = document.getElementById('progress-bar');
+    const resultsSummary = document.getElementById('results-summary');
+    const resultsScore = document.getElementById('results-score');
+    const resultsMessage = document.getElementById('results-message');
+    const mistakesList = document.getElementById('mistakes-list');
+    const mistakesContainer = document.getElementById('mistakes-container');
+    const hintText = document.getElementById('hint-text');
+    
+    // Test elements
+    const testQuestionText = document.getElementById('test-question-text');
+    const testUserAnswer = document.getElementById('test-user-answer');
+    const testProgressText = document.getElementById('test-progress-text');
+    const testProgressBar = document.getElementById('test-progress-bar');
+    const testResultsScore = document.getElementById('test-results-score');
+    const testResultsMessage = document.getElementById('test-results-message');
+    const testInstructions = document.getElementById('test-instructions');
+    const testSubmittedFeedback = document.getElementById('test-submitted-feedback');
+    const testMistakesList = document.getElementById('test-mistakes-list');
+    const testMistakesContainer = document.getElementById('test-mistakes-container');
+    const newTestBtn = document.getElementById('new-test-btn');
+    
+    // Audio elements
+    const correctSound = document.getElementById('correctSound');
+    const wrongSound = document.getElementById('wrongSound');
+    const celebrationSound = document.getElementById('celebrationSound');
 
-        // Show test question
-        function showTestQuestion() {
-            const verb = testVerbs[testCurrentQuestionIndex];
-            
-            testQuestionText.textContent = verb.english;
-            testUserAnswer.value = '';
-            
-            // Show instructions only for first question
-            if (testCurrentQuestionIndex > 0) {
-                testInstructions.classList.add('hidden');
-            } else {
-                testInstructions.classList.remove('hidden');
-            }
-            
-            // Update progress
-            const progressPercent = ((testCurrentQuestionIndex + 1) / testVerbs.length) * 100;
-            testProgressText.textContent = `Verb ${testCurrentQuestionIndex + 1} of ${testVerbs.length}`;
-            testProgressBar.style.width = `${progressPercent}%`;
-            
-            testSubmittedFeedback.classList.add('hidden');
-            
-            // Focus and open keyboard
-            setTimeout(() => {
-                testUserAnswer.focus();
-            }, 100);
-        }
+    // Page elements
+    const verbsPage = document.getElementById('verbs-page');
+    const articlesPage = document.getElementById('articles-page');
+    const prepositionsPage = document.getElementById('prepositions-page');
+    const tensePage = document.getElementById('tense-page');
+    const blogsPage = document.getElementById('blogs-page');
+    const contactPage = document.getElementById('contact-page');
 
-        // Check test answer
-        function checkTestAnswer() {
-            const verb = testVerbs[testCurrentQuestionIndex];
-            const answer = testUserAnswer.value.trim().toLowerCase();
-            
-            // Show submitted feedback
-            testSubmittedFeedback.classList.remove('hidden');
-            
-            if (answer === verb.french) {
-                testScore++;
-            } else {
-                // Record mistake
-                testMistakes.push({
-                    english: verb.english,
-                    french: verb.french,
-                    userAnswer: answer
-                });
-            }
-            
-            // Add slight delay before moving to next question
-            setTimeout(() => {
-                nextTestQuestion();
-                testUserAnswer.focus();
-            }, 500);
-        }
+    // Navigation links
+    const verbsLink = document.getElementById('verbs-link');
+    const articlesLink = document.getElementById('articles-link');
+    const prepositionsLink = document.getElementById('prepositions-link');
+    const tenseLink = document.getElementById('tense-link');
+    const blogsLink = document.getElementById('blogs-link');
+    const contactLink = document.getElementById('contact-link');
 
-        // Next test question
-        function nextTestQuestion() {
-            testCurrentQuestionIndex++;
-            
-            if (testCurrentQuestionIndex >= testVerbs.length) {
-                showTestResults();
-            } else {
-                showTestQuestion();
-                // Keep keyboard open by focusing on the input
-                setTimeout(() => {
-                    testUserAnswer.focus();
-                }, 100);
-            }
-        }
+    // Back to verbs links
+    const backToVerbsFromArticles = document.getElementById('back-to-verbs-from-articles');
+    const backToVerbsFromPrepositions = document.getElementById('back-to-verbs-from-prepositions');
+    const backToVerbsFromTense = document.getElementById('back-to-verbs-from-tense');
+    const backToVerbsFromBlogs = document.getElementById('back-to-verbs-from-blogs');
+    const backToVerbsFromContact = document.getElementById('back-to-verbs-from-contact');
 
-        // Show test results
-        function showTestResults() {
-            testPage.classList.add('hidden');
-            testResultsPage.classList.remove('hidden');
-            
-            // Calculate score percentage
-            const scorePercentage = Math.round((testScore / testVerbs.length) * 100);
-            
-            // Display score
-            testResultsScore.textContent = `${testScore}/${testVerbs.length} (${scorePercentage}%)`;
-            
-            // Display appropriate message
-            if (scorePercentage === 100) {
-                testResultsMessage.innerHTML = `
-                    <div class="perfect-score">Master Level Achieved!</div>
-                    <p class="mt-3">You've demonstrated complete mastery of these verbs!</p>
-                `;
-                createConfetti();
-                celebrationSound.play();
-            } else if (scorePercentage >= 90) {
-                testResultsMessage.innerHTML = `
-                    <div class="perfect-score">Excellent Performance!</div>
-                    <p class="mt-3">You're almost at mastery level!</p>
-                `;
-            } else if (scorePercentage >= 75) {
-                testResultsMessage.innerHTML = `
-                    <p>Strong Performance!</p>
-                    <p class="mt-3">You're well on your way to mastering these verbs.</p>
-                `;
-            } else if (scorePercentage >= 50) {
-                testResultsMessage.innerHTML = `
-                    <p>Good Effort!</p>
-                    <p class="mt-3">Keep practicing to improve your mastery.</p>
-                `;
-            } else {
-                testResultsMessage.innerHTML = `
-                    <p>Practice Makes Perfect!</p>
-                    <p class="mt-3">Review your mistakes and try again to improve.</p>
-                `;
-            }
-            
-            // Display mistakes if any
-            if (testMistakes.length > 0) {
-                testMistakesList.innerHTML = testMistakes.map(mistake => `
-                    <div class="mistake-item">
-                        <strong>${mistake.english}</strong><br>
-                        <span class="user-answer">Your answer: ${mistake.userAnswer || "(skipped)"}</span><br>
-                        <span class="correct-answer">Correct answer: ${mistake.french}</span>
-                    </div>
-                `).join('');
-            } else {
-                testMistakesContainer.innerHTML = `
-                    <h3 class="text-center perfect-score">Perfect! No mistakes!</h3>
-                `;
-            }
-        }
+    // Contact form elements
+    const submitContact = document.getElementById('submit-contact');
+    const successMessage = document.getElementById('success-message');
 
-        // Allow pressing Enter to check answer
-        userAnswer.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                if (continueBtn.classList.contains('hidden')) {
-                    checkAnswer();
-                } else {
-                    nextQuestion();
-                }
-            }
+    // Navigation functions
+    function showPage(page) {
+      // Hide all pages
+      verbsPage.classList.add('hidden');
+      articlesPage.classList.add('hidden');
+      prepositionsPage.classList.add('hidden');
+      tensePage.classList.add('hidden');
+      blogsPage.classList.add('hidden');
+      contactPage.classList.add('hidden');
+      
+      // Show the selected page
+      page.classList.remove('hidden');
+      
+      // If showing verbs page, make sure main menu is visible
+      if (page === verbsPage) {
+        mainMenu.classList.remove('hidden');
+        practicePage.classList.add('hidden');
+        resultsPage.classList.add('hidden');
+        testPage.classList.add('hidden');
+        testResultsPage.classList.add('hidden');
+      }
+    }
+
+    // Event listeners for navigation
+    verbsLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      showPage(verbsPage);
+    });
+
+    articlesLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      showPage(articlesPage);
+    });
+
+    prepositionsLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      showPage(prepositionsPage);
+    });
+
+    tenseLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      showPage(tensePage);
+    });
+
+    blogsLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      showPage(blogsPage);
+    });
+
+    contactLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      showPage(contactPage);
+    });
+
+    // Back to verbs links
+    backToVerbsFromArticles.addEventListener('click', (e) => {
+      e.preventDefault();
+      showPage(verbsPage);
+    });
+
+    backToVerbsFromPrepositions.addEventListener('click', (e) => {
+      e.preventDefault();
+      showPage(verbsPage);
+    });
+
+    backToVerbsFromTense.addEventListener('click', (e) => {
+      e.preventDefault();
+      showPage(verbsPage);
+    });
+
+    backToVerbsFromBlogs.addEventListener('click', (e) => {
+      e.preventDefault();
+      showPage(verbsPage);
+    });
+
+    backToVerbsFromContact.addEventListener('click', (e) => {
+      e.preventDefault();
+      showPage(verbsPage);
+    });
+
+    // Contact form submission
+    submitContact.addEventListener('click', (e) => {
+      e.preventDefault();
+      // In a real app, you would send the form data to a server here
+      // For this demo, we'll just show the success message
+      successMessage.style.display = 'block';
+      setTimeout(() => {
+        successMessage.style.display = 'none';
+      }, 5000);
+    });
+
+    // Start practice with selected set
+    function startPractice(setNumber) {
+      currentSet = setNumber;
+      currentQuestionIndex = 0;
+      currentScore = 0;
+      mistakes = [];
+      isRetryMode = false;
+      initialMistakesCount = 0;
+      
+      // Shuffle the verbs for random order
+      shuffledVerbs = [...verbSets[setNumber]].sort(() => Math.random() - 0.5);
+      
+      // Hide the main menu and show the practice page
+      showPage(verbsPage); // This ensures the header is visible
+      mainMenu.classList.add('hidden');
+      practicePage.classList.remove('hidden');
+      
+      showQuestion();
+    }
+
+    // Show current question
+    function showQuestion() {
+      const verb = shuffledVerbs[currentQuestionIndex];
+      
+      questionText.textContent = verb.english;
+      userAnswer.value = '';
+      
+      // Clear feedback and hint
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+      correctAnswerDisplay.textContent = '';
+      hintText.textContent = '';
+      hintText.style.display = 'none';
+      continueBtn.classList.add('hidden');
+      
+      // Update progress
+      const progressPercent = ((currentQuestionIndex + 1) / shuffledVerbs.length) * 100;
+      progressText.textContent = `Verb ${currentQuestionIndex + 1} of ${shuffledVerbs.length}`;
+      progressBar.style.width = `${progressPercent}%`;
+      
+      // Focus and open keyboard
+      setTimeout(() => {
+        userAnswer.focus();
+      }, 100);
+    }
+
+    // Show hint for current verb
+    function showHint() {
+      const verb = shuffledVerbs[currentQuestionIndex];
+      let hint = '';
+      
+      // Create hint based on verb characteristics
+      if (verb.french.endsWith('er')) {
+        hint = `Ends with "er"`;
+      } else if (verb.french.endsWith('ir')) {
+        hint = `Ends with "ir"`;
+      } else if (verb.french.endsWith('re')) {
+        hint = `Ends with "re"`;
+      } else if (verb.french.endsWith('oir')) {
+        hint = `Ends with "oir"`;
+      }
+      
+      // Add first letter if the word is long
+      if (verb.french.length > 5) {
+        hint = `Starts with "${verb.french[0].toUpperCase()}" and ${hint.toLowerCase()}`;
+      }
+      
+      hintText.textContent = `Hint: ${hint}`;
+      hintText.style.display = 'block';
+    }
+
+    // Check answer
+    function checkAnswer() {
+      const verb = shuffledVerbs[currentQuestionIndex];
+      const answer = userAnswer.value.trim().toLowerCase();
+      
+      if (answer === verb.french) {
+        feedback.textContent = "Correct! Well done!";
+        feedback.className = "feedback correct";
+        currentScore++;
+        // Play correct sound
+        correctSound.currentTime = 0;
+        correctSound.play();
+        
+        // Keep keyboard open by focusing on the next question
+        setTimeout(() => {
+          nextQuestion();
+          userAnswer.focus();
+        }, 1500);
+      } else {
+        feedback.textContent = "Incorrect. Try again!";
+        feedback.className = "feedback incorrect";
+        correctAnswerDisplay.textContent = "Correct answer: " + verb.french;
+        continueBtn.classList.remove('hidden');
+        
+        // Play wrong sound
+        wrongSound.currentTime = 0;
+        wrongSound.play();
+        
+        // Record mistake
+        mistakes.push({
+          english: verb.english,
+          french: verb.french,
+          userAnswer: answer
         });
         
-        // Allow pressing Enter in test
-        testUserAnswer.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                checkTestAnswer();
-            }
+        // Set initial mistakes count on first mistake in regular mode
+        if (!isRetryMode && initialMistakesCount === 0) {
+          initialMistakesCount = 1; // At least one mistake now
+        }
+      }
+    }
+
+    // Show answer
+    function showAnswer() {
+      const verb = shuffledVerbs[currentQuestionIndex];
+      
+      userAnswer.value = verb.french;
+      feedback.textContent = "Here's the correct answer:";
+      feedback.className = "feedback correct";
+      correctAnswerDisplay.textContent = verb.french;
+      continueBtn.classList.remove('hidden');
+      
+      // Play wrong sound since they needed to see the answer
+      wrongSound.currentTime = 0;
+      wrongSound.play();
+      
+      // Record as mistake if not already
+      if (!mistakes.some(m => m.english === verb.english)) {
+        mistakes.push({
+          english: verb.english,
+          french: verb.french,
+          userAnswer: ""
         });
-    </script>
+        
+        // Set initial mistakes count on first mistake in regular mode
+        if (!isRetryMode && initialMistakesCount === 0) {
+          initialMistakesCount = 1; // At least one mistake now
+        }
+      }
+    }
+
+    // Next question
+    function nextQuestion() {
+      currentQuestionIndex++;
+      
+      if (currentQuestionIndex >= shuffledVerbs.length) {
+        showResults();
+      } else {
+        showQuestion();
+        // Keep keyboard open by focusing on the input
+        setTimeout(() => {
+          userAnswer.focus();
+        }, 100);
+      }
+    }
+
+    // Show results after completing set
+    function showResults() {
+      practicePage.classList.add('hidden');
+      resultsPage.classList.remove('hidden');
+      
+      // Calculate score percentage
+      const scorePercentage = Math.round((currentScore / shuffledVerbs.length) * 100);
+      
+      // Display score
+      resultsScore.textContent = `${currentScore}/${shuffledVerbs.length} (${scorePercentage}%)`;
+      
+      // Display appropriate message
+      if (isRetryMode) {
+        if (mistakes.length === 0) {
+          resultsMessage.innerHTML = `
+            <div class="perfect-score">Perfect! You corrected all your mistakes!</div>
+            <p class="mt-3">You've mastered this set!</p>
+          `;
+          mistakesContainer.innerHTML = '';
+          retryBtn.classList.add('hidden');
+          createConfetti();
+          celebrationSound.play();
+        } else {
+          resultsMessage.innerHTML = `
+            <p>You completed <strong>Mistakes Review</strong></p>
+            <p>You corrected ${initialMistakesCount - mistakes.length} of ${initialMistakesCount} mistakes</p>
+          `;
+          retryBtn.classList.remove('hidden');
+        }
+      } else {
+        if (scorePercentage === 100) {
+          resultsMessage.innerHTML = `
+            <div class="perfect-score">Perfect Score! Excellent work!</div>
+          `;
+          createConfetti();
+          celebrationSound.play();
+        } else if (scorePercentage >= 80) {
+          resultsMessage.innerHTML = `
+            <div class="perfect-score">Great Job! Almost perfect!</div>
+            <p class="mt-3">You're doing really well with these verbs!</p>
+          `;
+        } else if (scorePercentage >= 60) {
+          resultsMessage.innerHTML = `
+            <p>Good effort! You're making progress!</p>
+            <p class="mt-3">Keep practicing to improve your score.</p>
+          `;
+        } else {
+          resultsMessage.innerHTML = `
+            <p>Practice makes perfect!</p>
+            <p class="mt-3">Review your mistakes and try again to improve.</p>
+          `;
+        }
+        
+        if (mistakes.length === 0) {
+          mistakesContainer.innerHTML = `
+            <h3 class="text-center perfect-score">Perfect! No mistakes!</h3>
+          `;
+          retryBtn.classList.add('hidden');
+        } else {
+          initialMistakesCount = mistakes.length;
+          retryBtn.classList.remove('hidden');
+        }
+      }
+      
+      // Display mistakes if any
+      if (mistakes.length > 0) {
+        mistakesList.innerHTML = mistakes.map(mistake => `
+          <div class="mistake-item">
+            <strong>${mistake.english}</strong><br>
+            <span class="user-answer">Your answer: ${mistake.userAnswer || "(skipped)"}</span><br>
+            <span class="correct-answer">Correct answer: ${mistake.french}</span>
+          </div>
+        `).join('');
+      }
+      
+      newSetBtn.classList.remove('hidden');
+    }
+
+    // Create celebration confetti
+    function createConfetti() {
+      const colors = ['#4361ee', '#3f37c9', '#4895ef', '#4cc9f0', '#f72585'];
+      
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.width = Math.random() * 10 + 5 + 'px';
+        confetti.style.height = Math.random() * 10 + 5 + 'px';
+        confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+        document.body.appendChild(confetti);
+        
+        // Remove confetti after animation
+        setTimeout(() => {
+          confetti.remove();
+        }, 5000);
+      }
+    }
+
+    // Retry mistakes
+    function retryMistakes() {
+      if (mistakes.length === 0) return;
+      
+      // Create a new set with just the mistakes
+      shuffledVerbs = mistakes.map(mistake => ({
+        english: mistake.english,
+        french: mistake.french
+      }));
+      
+      currentQuestionIndex = 0;
+      currentScore = 0;
+      initialMistakesCount = mistakes.length;
+      mistakes = [];
+      isRetryMode = true;
+      
+      resultsPage.classList.add('hidden');
+      practicePage.classList.remove('hidden');
+      showQuestion();
+    }
+
+    // Return to menu
+    function returnToMenu() {
+      showPage(verbsPage);
+    }
+
+    // Start master test
+    function startMasterTest() {
+      // Combine all verbs from all sets and select 100 random ones
+      testVerbs = Object.values(verbSets).flat().sort(() => Math.random() - 0.5).slice(0, 100);
+      
+      testCurrentQuestionIndex = 0;
+      testScore = 0;
+      testMistakes = [];
+      
+      showPage(verbsPage); // This ensures the header is visible
+      mainMenu.classList.add('hidden');
+      testPage.classList.remove('hidden');
+      
+      showTestQuestion();
+    }
+
+    // Show test question
+    function showTestQuestion() {
+      const verb = testVerbs[testCurrentQuestionIndex];
+      
+      testQuestionText.textContent = verb.english;
+      testUserAnswer.value = '';
+      
+      // Show instructions only for first question
+      if (testCurrentQuestionIndex > 0) {
+        testInstructions.classList.add('hidden');
+      } else {
+        testInstructions.classList.remove('hidden');
+      }
+      
+      // Update progress
+      const progressPercent = ((testCurrentQuestionIndex + 1) / testVerbs.length) * 100;
+      testProgressText.textContent = `Verb ${testCurrentQuestionIndex + 1} of ${testVerbs.length}`;
+      testProgressBar.style.width = `${progressPercent}%`;
+      
+      testSubmittedFeedback.classList.add('hidden');
+      
+      // Focus and open keyboard
+      setTimeout(() => {
+        testUserAnswer.focus();
+      }, 100);
+    }
+
+    // Check test answer
+    function checkTestAnswer() {
+      const verb = testVerbs[testCurrentQuestionIndex];
+      const answer = testUserAnswer.value.trim().toLowerCase();
+      
+      // Show submitted feedback
+      testSubmittedFeedback.classList.remove('hidden');
+      
+      if (answer === verb.french) {
+        testScore++;
+      } else {
+        // Record mistake
+        testMistakes.push({
+          english: verb.english,
+          french: verb.french,
+          userAnswer: answer
+        });
+      }
+      
+      // Add slight delay before moving to next question
+      setTimeout(() => {
+        nextTestQuestion();
+        testUserAnswer.focus();
+      }, 500);
+    }
+
+    // Next test question
+    function nextTestQuestion() {
+      testCurrentQuestionIndex++;
+      
+      if (testCurrentQuestionIndex >= testVerbs.length) {
+        showTestResults();
+      } else {
+        showTestQuestion();
+        // Keep keyboard open by focusing on the input
+        setTimeout(() => {
+          testUserAnswer.focus();
+        }, 100);
+      }
+    }
+
+    // Show test results
+    function showTestResults() {
+      testPage.classList.add('hidden');
+      testResultsPage.classList.remove('hidden');
+      
+      // Calculate score percentage
+      const scorePercentage = Math.round((testScore / testVerbs.length) * 100);
+      
+      // Display score
+      testResultsScore.textContent = `${testScore}/${testVerbs.length} (${scorePercentage}%)`;
+      
+      // Display appropriate message
+      if (scorePercentage === 100) {
+        testResultsMessage.innerHTML = `
+          <div class="perfect-score">Master Level Achieved!</div>
+          <p class="mt-3">You've demonstrated complete mastery of these verbs!</p>
+        `;
+        createConfetti();
+        celebrationSound.play();
+      } else if (scorePercentage >= 90) {
+        testResultsMessage.innerHTML = `
+          <div class="perfect-score">Excellent Performance!</div>
+          <p class="mt-3">You're almost at mastery level!</p>
+        `;
+      } else if (scorePercentage >= 75) {
+        testResultsMessage.innerHTML = `
+          <p>Strong Performance!</p>
+          <p class="mt-3">You're well on your way to mastering these verbs.</p>
+        `;
+      } else if (scorePercentage >= 50) {
+        testResultsMessage.innerHTML = `
+          <p>Good Effort!</p>
+          <p class="mt-3">Keep practicing to improve your mastery.</p>
+        `;
+      } else {
+        testResultsMessage.innerHTML = `
+          <p>Practice Makes Perfect!</p>
+          <p class="mt-3">Review your mistakes and try again to improve.</p>
+        `;
+      }
+      
+      // Display mistakes if any
+      if (testMistakes.length > 0) {
+        testMistakesList.innerHTML = testMistakes.map(mistake => `
+          <div class="mistake-item">
+            <strong>${mistake.english}</strong><br>
+            <span class="user-answer">Your answer: ${mistake.userAnswer || "(skipped)"}</span><br>
+            <span class="correct-answer">Correct answer: ${mistake.french}</span>
+          </div>
+        `).join('');
+      } else {
+        testMistakesContainer.innerHTML = `
+          <h3 class="text-center perfect-score">Perfect! No mistakes!</h3>
+        `;
+      }
+    }
+
+    // Allow pressing Enter to check answer
+    userAnswer.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        if (continueBtn.classList.contains('hidden')) {
+          checkAnswer();
+        } else {
+          nextQuestion();
+        }
+      }
+    });
+    
+    // Allow pressing Enter in test
+    testUserAnswer.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        checkTestAnswer();
+      }
+    });
+
+    // Initialize the page to show verbs page by default
+    showPage(verbsPage);
+  </script>
 </body>
 </html>
